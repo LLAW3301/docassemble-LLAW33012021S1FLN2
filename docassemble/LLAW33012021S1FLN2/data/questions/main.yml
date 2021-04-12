@@ -4,3 +4,9 @@ question: main program
 subquestion: |
   main program will go here 
 --- 
+question: Welcome Screen
+subquestion: |
+  Welcome!
+buttons:
+  - Exit: exit
+  - Restart: restart

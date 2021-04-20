@@ -1,0 +1,10 @@
+---
+images:
+  uber_image: uber.png
+  ola_image: ola.png
+  taxi_image: taxi.png
+  train_image: train.png
+  bus_image: bus.png
+  tram_image: tram.png
+  other_image: other.png
+---

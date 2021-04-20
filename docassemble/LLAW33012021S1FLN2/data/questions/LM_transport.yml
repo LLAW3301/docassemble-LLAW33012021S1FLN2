@@ -1,0 +1,25 @@
+---
+include:
+  - LM_image_sets.yml
+---
+mandatory: True
+question: |
+  What is the type of transportation you have been refused?
+field: transport_type
+buttons:
+  - "UBER" : uber
+    image: uber_image
+  - "OLA" : ola
+    image: ola_image
+  - "TAXI" : taxi
+    image: taxi_image
+  - "BUS" : bus
+    image: bus_image
+  - "TRAIN" : train
+    image: train_image
+  - "TRAM" : tram
+    image: tram_image
+  - "OTHER" : other
+    image: other_image
+  
+---

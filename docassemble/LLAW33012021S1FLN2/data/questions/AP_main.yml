@@ -3,7 +3,9 @@ mandatory: true
 question: |
   What time did the refusal occur?
 fields:
-  # For some reason current_datetime().time() doesn't work to set the default value,
+  # Based on https://docassemble.org/docs/fields.html#time
+  # and https://docassemble.org/docs/functions.html#date%20functions
+  # For some reason current_datetime().time() doesn't work to set the default time,
   # while e.g. as_datetime('07:30 AM').time() does, so use something based on
   # that as a workaround
   - Date and time: FLNrefusal_time

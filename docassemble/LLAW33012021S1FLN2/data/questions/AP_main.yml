@@ -1,3 +1,13 @@
 ---
-# todo
+mandatory: true
+question: |
+  What time did the refusal occur?
+fields:
+  # For some reason current_datetime().time() doesn't work to set the default value,
+  # while e.g. as_datetime('07:30 AM').time() does, so use something based on
+  # that as a workaround
+  - Date and time: FLNrefusal_time
+    datatype: time
+    default: |
+      ${ as_datetime(current_datetime().strftime('%H:%M:00')).time() }
 ---

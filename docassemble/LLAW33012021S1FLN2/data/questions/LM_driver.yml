@@ -1,0 +1,17 @@
+---
+include:
+  - LM_questions.yml
+---
+mandatory: True
+code: |
+  transport_type
+  if transport_type == 'other':
+    other_details
+    transport_type = other_details
+---
+mandatory: True
+question: |
+  Your choices so far:
+subquestion: |
+  you chose ${transport_type}.
+---

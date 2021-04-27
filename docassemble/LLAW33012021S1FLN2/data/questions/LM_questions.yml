@@ -12,6 +12,8 @@ buttons:
     image: ola_image
   - "TAXI" : taxi
     image: taxi_image
+  - "DIDI": didi
+    image: didi_image
   - "BUS" : bus
     image: bus_image
   - "TRAIN" : train

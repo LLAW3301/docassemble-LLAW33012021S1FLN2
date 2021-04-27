@@ -1,6 +1,19 @@
 ---
-question: Please enter your full name?
+mandatory: true
+question: |
+  Please enter your full name.
 fields:
-  - Applicant First Name: FLNfirstname
-  - Applicant Last Name: FLNlastname
+  - First Name: FLNfirstname
+  - Last Name: FLNlastname
+---
+question: |
+  What is your contact number?
+fields:
+ - Phone Number: FLNphone
+---
+question: |
+  What is your e-mail address?
+fields:
+  - E-mail: user_email
+    datatype: email
 ---

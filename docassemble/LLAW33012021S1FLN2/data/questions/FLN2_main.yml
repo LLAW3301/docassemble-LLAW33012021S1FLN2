@@ -1,11 +1,6 @@
 ---
-metadata:
-  title: Default playground interview
-  short title: Test
-  comment: This is a learning tool.  Feel free to write over it.
----
-objects:
-  - client: Individual
+include: 
+  - FLN2_questions.yml
 ---
 mandatory: True
 question: Paws Rights
@@ -17,16 +12,6 @@ buttons:
   - I agree and wish to continue: continue
   - I do not agree and wish to exit: exit
 ---
-mandatory: True 
-question: |
-  Who is reporting the incident?
-field: person_reporting
-buttons:
-  - Yourself: FLN_yourself
-  - Partner/Friend: FLN_partner_friend 
-  - Carer: FLN_carer 
-  - Relative: FLN_relative
-
-
-
----
+mandatory: True
+code: |
+  

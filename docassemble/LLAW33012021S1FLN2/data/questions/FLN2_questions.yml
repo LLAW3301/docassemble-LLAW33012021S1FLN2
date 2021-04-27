@@ -15,6 +15,13 @@ question: |
 fields:
   - E-mail: user_email
     datatype: email
-
-
+---
+question: |
+  Who is reporting the incident?
+field: person_reporting
+buttons:
+  - Yourself: FLN_yourself
+  - Partner/Friend: FLN_partner_friend 
+  - Carer: FLN_carer 
+  - Relative: FLN_relative
 ---

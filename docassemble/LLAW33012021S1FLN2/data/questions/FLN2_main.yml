@@ -14,4 +14,13 @@ buttons:
 ---
 mandatory: True
 code: |
+  person_reporting
+  FLNfirstname
+  FLNphone
+  user_email
+  transport_type
   
+  if transport_type == 'other':
+    other_details
+    transport_type = other_details
+    

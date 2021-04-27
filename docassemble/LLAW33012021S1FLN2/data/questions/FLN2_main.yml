@@ -24,3 +24,25 @@ code: |
     other_details
     transport_type = other_details
     
+  FLNdate
+  FLNrefusal_time
+  FLNrefusal_reason
+ 
+  if FLNrefusal_reason == 'Yes':
+    driver_statement
+
+  refuser_asked_animal_id
+  if refuser_asked_animal_id == 'Yes':
+    user_show_id
+  if refuser_asked_animal_id == 'No':
+    user_show_id = 'Yes'
+  if user_show_id == 'No':
+    continue_unlawful_report
+    if continue_unlawful_report == 'No':
+      message("Exit screen","Thanks for using!")
+  attach_evidence
+  if attach_evidence == "Yes":
+    uploaded_files
+
+---
+    

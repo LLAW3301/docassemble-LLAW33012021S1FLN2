@@ -56,6 +56,41 @@ fields:
   - Details: other_details
     input type: area
 ---
+question: Date of incident
+subquestion: |
+ When did the incident occur? This defaults to today's date, but you can edit it if needed
+fields:
+  - Date: FLNdate
+    datatype: date
+    default: |
+      ${ today() }
+---
+question: |
+  What time did the refusal occur?
+fields:
+  # Based on https://docassemble.org/docs/fields.html#time
+  # and https://docassemble.org/docs/functions.html#date%20functions
+  # For some reason current_datetime().time() doesn't work to set the default time,
+  # while e.g. as_datetime('07:30 AM').time() does, so use something based on
+  # that as a workaround
+  - Time: FLNrefusal_time
+    datatype: time
+    default: |
+      ${ as_datetime(current_datetime().strftime('%H:%M:00')).time() }
+---
+question: |
+  Did the driver state their reason for the refusal?
+field: FLNrefusal_reason
+buttons:
+  - "Yes": Yes
+  - "No": No
+---
+question: |
+  Please breifly state what the driver said to you.   
+fields:
+  - Details: driver_statement
+    input type: area
+---
 question: |
   Did the refusing person ask to see your accredited assistance animal identification?
 field: refuser_asked_animal_id

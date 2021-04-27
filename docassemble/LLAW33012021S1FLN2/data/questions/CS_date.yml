@@ -1,0 +1,32 @@
+---
+mandatory: true
+question: |
+  What is your date of birth?
+fields:
+  - Birthdate: target_variable
+    datatype: time
+---
+question: Date of incident
+subquestion: |
+ Todays date
+fields:
+  - Date: CMSdate
+    datatype: date
+    default: |
+      ${ as_datetime(current_datetime().strftime('%D')) }
+
+# question: Date of incident
+# subquestion: |
+#  Todays date
+# fields:
+#   - Day: CMSday
+#   - Month: CMSmonth
+#   - Year: CMSyear
+
+mandatory: True
+---
+# 
+#  Is this the correct date the incident occured on? 
+#  
+#  ${ today() }.
+  

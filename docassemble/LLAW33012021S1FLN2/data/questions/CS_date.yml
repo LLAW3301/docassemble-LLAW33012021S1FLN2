@@ -1,3 +1,5 @@
+features:
+  javascript: datereplace.js
 ---
 question: Date of incident
 subquestion: |

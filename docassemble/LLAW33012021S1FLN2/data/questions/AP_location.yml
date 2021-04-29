@@ -1,26 +1,19 @@
-objects:
-  theaddress: Address
+objects from file:
+  - postcodes: postcodes.json
 ---
 mandatory: true
 question: |
   Where were you when you were refused access?
+subquestion: |
+  Enter the postcode to include in the report: [FIELD FLNrefusal_postcode]
+  
+  If you don't know the postcode, you can type a suburb name here to search for the right postcode [FIELD FLNrefusal_suburb]
+  <div id="postcodes">Postcodes go here</div>
+  
+  If you don't know the suburb, you can browse this map to find it:
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d418338.882836239!2d138.33099299768682!3d-34.99988260976451!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ab735c7c526b33f%3A0x4033654628ec640!2sAdelaide%20SA!5e0!3m2!1sen!2sau!4v1619527243018!5m2!1sen!2sau" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+  <!--<iframe src="https://wikimapia.org/#lat=-34.911642&lon=138.622742&z=10&l=&ifr=1&m=bm" width="318" height="318" frameborder="0"></iframe>-->
 fields:
-  - html: |
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d418338.882836239!2d138.33099299768682!3d-34.99988260976451!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ab735c7c526b33f%3A0x4033654628ec640!2sAdelaide%20SA!5e0!3m2!1sen!2sau!4v1619527243018!5m2!1sen!2sau" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-  - Postcode: FLNrefusal_postcode
----
-mandatory: true
-question: |
-  What is the address of the adverse
-  party?
-fields:
-  - Address: theaddress.address
-    address autocomplete: True
-  - City: theaddress.city
-  - State: theaddress.state
-    code: |
-      states_list()
-  - Zip: theaddress.zip
-    required: False
-  - County: theaddress.county
+  - Search for a suburb: FLNrefusal_suburb
+  - Enter the postcode to submit: FLNrefusal_postcode
 ---

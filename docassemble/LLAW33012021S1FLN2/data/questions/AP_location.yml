@@ -4,7 +4,7 @@ imports:
 objects from file:
   - postcodes: postcodes.json
 ---
-initial: True
+initial: true
 code: |
   log("var postcodesDB = " + json.dumps(postcodes.as_serializable()) + ";", "javascript")
 ---
@@ -16,14 +16,13 @@ subquestion: |
   
   <div id="postcodes-list"></div>
   
-  If you don't know the suburb, you can browse this map:
+  If you're not sure what suburb, you can try browsing this map:
   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d418338.882836239!2d138.33099299768682!3d-34.99988260976451!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ab735c7c526b33f%3A0x4033654628ec640!2sAdelaide%20SA!5e0!3m2!1sen!2sau!4v1619527243018!5m2!1sen!2sau" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-  
 fields:
   - Postcode: FLNrefusal_postcode
 script: |
   <script>
-    const resultsLimit = 10;
+    const resultsLimit = 20;
     
     const postcodeInputSpan = document.getElementById('postcode-input-span');
     const postcodeInput = postcodeInputSpan.getElementsByClassName('dainput-embedded')[0];
@@ -62,6 +61,3 @@ script: |
     }
   </script>
 ---
-mandatory: true
-code: |
-  FLNrefusal_postcode

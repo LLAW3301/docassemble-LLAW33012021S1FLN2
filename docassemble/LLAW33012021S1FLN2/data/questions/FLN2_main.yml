@@ -51,9 +51,7 @@ code: |
   if attach_evidence == "Yes":
     uploaded_files
 
-  FLNemail_template
-  FLNreport_file
-  email_sent_ok = send_email(to=user_email, template=FLNemail_template, attachments=[FLNreport_file])
+  email_sent_ok = send_email(to=user_email, template=FLNreport_email_template, attachments=[FLNreport_file])
   
   endpoints['FLNexit_screen']
 ---

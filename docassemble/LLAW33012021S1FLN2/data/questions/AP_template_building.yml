@@ -4,7 +4,7 @@ attachment:
   variable name: FLNreport_file
   docx template file: dummy-template.docx
 ---
-template: FLNemail_template
+template: FLNreport_email_template
 subject: |
   Paws Rights Transport Refusal Report
 content: |

@@ -1,0 +1,18 @@
+/* based on https://www.benmarshall.me/responsive-iframes/ */
+.refusal-map-container {
+  overflow: hidden;
+  padding-top: 100%;
+  position: relative;
+}
+.refusal-map {
+  width: 100%;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+
+/* prevent weird resizing on backspace after suburb selection */
+#postcode-input-container, #postcode-input-container .dainput-embedded {
+  max-width: 140px;
+}

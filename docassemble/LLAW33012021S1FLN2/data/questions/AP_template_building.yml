@@ -1,0 +1,18 @@
+attachment:
+  name: Transport Refusal Report
+  filename: Transport Refusal Report ${ today().strftime('%Y-%M-%D') }
+  variable name: FLNreport_file
+  docx template file: dummy-template.docx
+---
+template: FLNemail_template
+subject: |
+  Greetings, ${ FLNfirstname }!
+content: |
+  Your transport refusal report is attached. Unfortunately, DPTI doesn't provide an email address to send these to, so please print & send it by mail to:
+  
+  Department for Infrastructure and Transport
+  77 Grenfell Street
+  Adelaide SA 5000
+  
+  Thankyou,
+  The Paws Rights Team

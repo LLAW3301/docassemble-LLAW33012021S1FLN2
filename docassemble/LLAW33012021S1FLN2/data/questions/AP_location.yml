@@ -11,33 +11,31 @@ code: |
 question: |
   Where were you when you were refused access?
 subquestion: |
-  Enter the postcode to include in the report: <span id="postcodes-input-span">[FIELD FLNrefusal_postcode]</span>
+  **Postcode (enter a postcode, or search by suburb):**
+  <span id="postcode-input-span">[FIELD FLNrefusal_postcode]</span>
   
-  If you don't know the suburb, you can first browse this map to find it:
+  <div id="postcodes-list"></div>
+  
+  If you don't know the suburb, you can browse this map:
   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d418338.882836239!2d138.33099299768682!3d-34.99988260976451!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ab735c7c526b33f%3A0x4033654628ec640!2sAdelaide%20SA!5e0!3m2!1sen!2sau!4v1619527243018!5m2!1sen!2sau" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
   
-  And then you can type a suburb name here to search for the right postcode <span id="suburb-search-span">[FIELD FLNrefusal_suburb]</span>
-  <div id="postcodes"></div>
 fields:
-  - Search for a suburb: FLNrefusal_suburb
-    required: False
-  - Enter the postcode to submit: FLNrefusal_postcode
+  - Postcode: FLNrefusal_postcode
 script: |
   <script>
     const resultsLimit = 10;
     
-    const suburbSearchSpan = document.getElementById('suburb-search-span');
-    const suburbSearchInput = suburbSearchSpan.getElementsByClassName('dainput-embedded')[0];
-    const postcodesDiv = document.getElementById('postcodes');
-    const postcodeInput = document.getElementById('postcodes-input-span').getElementsByClassName('dainput-embedded')[0];
+    const postcodeInputSpan = document.getElementById('postcode-input-span');
+    const postcodeInput = postcodeInputSpan.getElementsByClassName('dainput-embedded')[0];
+    const postcodesList = document.getElementById('postcodes-list');
     
-    suburbSearchInput.addEventListener('input', updateSearchList);
+    postcodeInput.addEventListener('input', updateSearchList);
     
     function updateSearchList(e) {
       const searchQuery = e.target.value.replace(/\W/g, '');
       
       if (searchQuery.length == 0) {
-        postcodesDiv.innerHTML = '';
+        postcodesList.innerHTML = '';
         return;
       }
       
@@ -55,12 +53,12 @@ script: |
         }
       }
       
-      postcodesDiv.innerHTML = results.map(r => '<p><div class="btn btn-da btn-info postcode-search-result" onclick="selectPostcode(' + r.postcode + ')">' + r.postcode + ': ' + r.placename + '</div></p>').join('');
+      postcodesList.innerHTML = results.map(r => '<p><div class="btn btn-da btn-info postcode-search-result" onclick="selectPostcode(' + r.postcode + ')">' + r.postcode + ': ' + r.placename + '</div></p>').join('');
     }
     
     function selectPostcode(postcode) {
       postcodeInput.value = postcode;
-      //setField("FLNrefusal_postcode", postcode);
+      postcodesList.innerHTML = '';
     }
   </script>
 ---

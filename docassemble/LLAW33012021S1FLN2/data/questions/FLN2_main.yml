@@ -2,6 +2,9 @@
 include: 
   - FLN2_questions.yml
 ---
+objects:
+  - endpoints: DADict
+---
 mandatory: True
 question: Paws Rights
 subquestion: |
@@ -43,6 +46,5 @@ code: |
   attach_evidence
   if attach_evidence == "Yes":
     uploaded_files
-
 ---
     

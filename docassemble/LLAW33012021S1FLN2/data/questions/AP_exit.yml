@@ -1,9 +1,10 @@
 features:
   css: AP_exit.css
 ---
+event: endpoints['FLNexit_screen']
 question: Report complete
 subquestion: |
-  A report you can send to DPTI (the Department for Planning, Transport and Infrastructure) has been emailed to your address. Unfortunately, DPTI doesn't provide an email address to send these to, so we recommend printing the report and sending it by mail to:
+  A report you can send to DPTI (the Department for Planning, Transport and Infrastructure) has been emailed to your address. Unfortunately, DPTI doesn't provide an email address to send these to, so we ask that you print the report and send it by mail to:
   
   <p class="dpti-address">
   Department for Infrastructure and Transport<br>
@@ -14,17 +15,3 @@ subquestion: |
   Thankyou for using the Paws Rights app, we hope that with your help in sending these reports, and providing statistics, we can push for change!
   
   <div class="end-image">logo/image here</div>
-# attachment:
-#   - name: Transport Refusal Report
-#     filename: Transport Refusal Report ${ today().strftime('%Y-%M-%D') }
-#     description: |
-#       A document with a classic message
-#     docx template file: dummy-template.docx
-#     valid formats:
-#       - pdf
-#     email address default: user_email
-attachment:
-  name: Transport Refusal Report
-  filename: Transport Refusal Report ${ today().strftime('%Y-%M-%D') }
-  variable name: FLNreport_file
-  docx template file: dummy-template.docx

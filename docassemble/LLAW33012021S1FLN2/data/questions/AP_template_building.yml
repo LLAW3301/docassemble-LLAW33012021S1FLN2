@@ -6,13 +6,15 @@ attachment:
 ---
 template: FLNemail_template
 subject: |
-  Greetings, ${ FLNfirstname }!
+  Paws Rights Transport Refusal Report
 content: |
-  Your transport refusal report is attached. Unfortunately, DPTI doesn't provide an email address to send these to, so please print & send it by mail to:
+  Greetings, ${ FLNfirstname }
+
+  Your transport refusal report is attached. Please print & send it by mail to:
   
-  Department for Infrastructure and Transport
-  77 Grenfell Street
+  Department for Infrastructure and Transport<br>
+  77 Grenfell Street<br>
   Adelaide SA 5000
   
-  Thankyou,
+  Thankyou,<br>
   The Paws Rights Team

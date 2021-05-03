@@ -8,6 +8,11 @@ include:
 objects:
   - endpoints: DADict
 ---
+# Define constant values here so we can reconfigure them later
+initial: true
+code: |
+  FLNstats_email_recipient = "alex@westminstersoftware.com"
+---
 mandatory: True
 question: Paws Rights
 subquestion: |
@@ -42,16 +47,22 @@ code: |
   if refuser_asked_animal_id == 'Yes':
     user_show_id
   if refuser_asked_animal_id == 'No':
-    user_show_id = 'Yes'
+    user_show_id = 'N/A'
   if user_show_id == 'No':
     continue_unlawful_report
     if continue_unlawful_report == 'No':
       message("Exit screen","Thanks for using!")
+  else:
+    continue_unlawful_report = "N/A"
   attach_evidence
   if attach_evidence == "Yes":
     uploaded_files
 
-  email_sent_ok = send_email(to=user_email, template=FLNreport_email_template, attachments=[FLNreport_file])
+  report_email_sent_ok = send_email(to=user_email, template=FLNreport_email_template, attachments=[FLNreport_file])
+  
+  stats_email_sent_ok = send_email(to=FLNstats_email_recipient, template=FLNstats_email_template)
+  
+  # TODO: Handle statistics email failing to send, including if it fails silently (report email is already handled)
   
   endpoints['FLNexit_screen']
 ---

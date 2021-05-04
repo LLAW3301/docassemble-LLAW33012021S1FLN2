@@ -1,18 +1,18 @@
-.da-field-buttons div button:nth-of-type(6n+0) {
+fieldset.multicolor-buttons div button:nth-of-type(6n+0) {
   background-color: rgb(255,0,0) !important;
 }
-.da-field-buttons div button:nth-of-type(6n+1) {
+fieldset.multicolor-buttons div button:nth-of-type(6n+1) {
   background-color: rgb(0,255,0) !important;
 }
-.da-field-buttons div button:nth-of-type(6n+2) {
+fieldset.multicolor-buttons div button:nth-of-type(6n+2) {
   background-color: rgb(0,0,255) !important;
 }
-.da-field-buttons div button:nth-of-type(6n+3) {
+fieldset.multicolor-buttons div button:nth-of-type(6n+3) {
   background-color: rgb(255,255,0) !important;
 }
-.da-field-buttons div button:nth-of-type(6n+4) {
+fieldset.multicolor-buttons div button:nth-of-type(6n+4) {
   background-color: rgb(0,255,255) !important;
 }
-.da-field-buttons div button:nth-of-type(6n+5) {
+fieldset.multicolor-buttons div button:nth-of-type(6n+5) {
   background-color: rgb(255,0,255) !important;
 }

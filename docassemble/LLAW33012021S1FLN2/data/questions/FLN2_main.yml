@@ -28,8 +28,19 @@ buttons:
 ---
 mandatory: True
 code: |
-  person_reporting
-  FLNfirstname
+  FLNperson_reporting
+  FLNuser_firstname
+  FLNuser_lastname
+  
+  FLNreporter_firstname = FLNuser_firstname
+  FLNreporter_lastname = FLNuser_lastname
+  if FLNperson_reporting == "Person refused":
+    FLNrefused_firstname = FLNuser_firstname
+    FLNrefused_lastname = FLNuser_lastname
+  else:
+    FLNrefused_firstname
+    FLNrefused_lastname
+  
   FLNphone
   user_email
   transport_type

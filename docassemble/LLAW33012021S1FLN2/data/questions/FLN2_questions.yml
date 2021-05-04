@@ -7,20 +7,26 @@ include:
 ---
 question: |
   Who is reporting the incident?
-field: person_reporting
+field: FLNperson_reporting
 buttons:
-  - Yourself: FLN_yourself
-  - Partner: FLN_partner
-  - Friend: FLN_friend
-  - Carer: FLN_carer 
-  - Relative: FLN_relative
-  - Other: FLN_other
+  - Yourself: "Person refused"
+  - Partner: "Partner of person refused"
+  - Friend: "Friend of person refused"
+  - Carer: "Carer of person refused" 
+  - Relative: "Relative of person refused"
+  - Other: "Other relationship to person refused"
 ---
 question: |
-  Please enter your full name.
+  What is your full name?
 fields:
-  - First Name: FLNfirstname
-  - Last Name: FLNlastname
+  - First Name: FLNuser_firstname
+  - Last Name: FLNuser_lastname
+---
+question: |
+  Please enter the full name of the person who has been refused transportation.
+fields:
+  - First Name: FLNrefused_firstname
+  - Last Name: FLNrefused_lastname
 ---
 question: |
   What is your contact number?

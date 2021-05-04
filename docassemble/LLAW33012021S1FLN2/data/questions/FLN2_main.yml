@@ -72,6 +72,8 @@ code: |
   attach_evidence
   if attach_evidence == "Yes":
     uploaded_files
+  else:
+    uploaded_files = None
 
   report_email_sent_ok = send_email(to=user_email, template=FLNreport_email_template, attachments=[FLNreport_file])
   

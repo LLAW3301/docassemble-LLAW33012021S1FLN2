@@ -5,6 +5,10 @@ include:
 features:
   css: AP_exit.css
 ---
+objects:
+  - TransparentLogo: DAStaticFile.using(filename='paws_rights_logo_transparent.png')
+  - YellowLogo: DAStaticFile.using(filename='paws_rights_logo_yellow.png')
+---
 event: endpoints['FLNexit_screen']
 question: Report complete
 subquestion: |
@@ -26,6 +30,6 @@ subquestion: |
 
   Thankyou for using the Paws Rights app, we hope that with your help in sending these reports, and gathering statistics, we can push for change!
   
-  <div class="end-image"><img src="https://docassemble.flinders.edu.au/playgroundstatic/FLN2/268/paws_rights_logo.png" height="150"></div>
+  <div class="end-image"><img src="${ TransparentLogo.url_for() }" width="150" height="150"></div>
   
   [here]: ${ FLNreport_file.url_for() }

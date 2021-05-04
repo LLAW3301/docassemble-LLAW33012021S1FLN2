@@ -49,6 +49,8 @@ code: |
   if transport_type == 'other':
     other_details
     transport_type = other_details
+  else:
+    other_details = "N/A"
     
   FLNdate
   FLNrefusal_time
@@ -57,6 +59,8 @@ code: |
  
   if FLNrefusal_reason == 'Yes':
     driver_statement
+  else:
+    driver_statement = "N/A"
 
   refuser_asked_animal_id
   if refuser_asked_animal_id == 'Yes':
@@ -69,6 +73,7 @@ code: |
       message("Exit screen","Thanks for using!")
   else:
     continue_unlawful_report = "N/A"
+  
   attach_evidence
   if attach_evidence == "Yes":
     uploaded_files

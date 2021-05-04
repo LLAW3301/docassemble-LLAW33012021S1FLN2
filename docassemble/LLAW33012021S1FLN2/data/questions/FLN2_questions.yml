@@ -1,4 +1,7 @@
 ---
+features:
+  javascript: datereplace.js
+---
 include:
   - LM_image_sets.yml
 ---
@@ -7,9 +10,11 @@ question: |
 field: person_reporting
 buttons:
   - Yourself: FLN_yourself
-  - Partner/Friend: FLN_partner_friend 
+  - Partner: FLN_partner
+  - Friend: FLN_friend
   - Carer: FLN_carer 
   - Relative: FLN_relative
+  - Other: FLN_other
 ---
 question: |
   Please enter your full name.

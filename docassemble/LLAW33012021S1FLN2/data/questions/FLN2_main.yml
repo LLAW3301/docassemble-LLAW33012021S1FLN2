@@ -5,6 +5,9 @@ include:
   - AP_exit.yml
   - AP_location.yml
 ---
+features: 
+  css: FLN_common.css
+---
 objects:
   - endpoints: DADict
 ---
@@ -16,7 +19,7 @@ code: |
 mandatory: True
 question: Paws Rights
 subquestion: |
- Welcome to the Paws Rights app. This app is intended to make it easy and accessible for people to report when they are refused into transport because of their assistance animals. 
+ Welcome to Paws Rights. This app is intended to make it easy and accessible for people to report when they are refused into transport because of their assistance animals. 
  
  Please note that your information may be recorded for statistic and data purposes. 
 buttons:

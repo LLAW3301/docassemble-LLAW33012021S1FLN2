@@ -4,6 +4,7 @@ include:
   - AP_template_building.yml
   - AP_exit.yml
   - AP_location.yml
+  - FLN2_person_reporting.yml
 ---
 features: 
   css: FLN_common.css

@@ -1,20 +1,9 @@
----
-features:
-  javascript: datereplace.js
+#---
+#features:
+#  javascript: datereplace.js
 ---
 include:
   - LM_image_sets.yml
----
-question: |
-  Who is reporting the incident?
-field: FLNperson_reporting
-buttons:
-  - Yourself: "Person refused"
-  - Partner: "Partner of person refused"
-  - Friend: "Friend of person refused"
-  - Carer: "Carer of person refused" 
-  - Relative: "Relative of person refused"
-  - Other: "Other relationship to person refused"
 ---
 question: |
   What is your full name?

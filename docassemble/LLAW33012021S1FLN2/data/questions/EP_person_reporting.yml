@@ -1,10 +1,9 @@
 ---
 features:
-  css: FLN2_person_reporting.css
+  css: EP_person_reporting.css
 ---
 question: |
   Who is reporting the incident?
-continue button field: none
 field: FLNperson_reporting
 buttons:
   - Yourself: "Person refused"

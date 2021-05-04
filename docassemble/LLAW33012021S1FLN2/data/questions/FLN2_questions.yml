@@ -27,27 +27,26 @@ question: |
 fields:
   - E-mail: user_email
     datatype: email
-
 ---
 question: |
   What is the type of transportation you have been refused?
 field: transport_type
 buttons:
-  - "UBER" : uber
+  - "UBER": "Uber"
     image: uber_image
-  - "OLA" : ola
+  - "OLA": "Ola"
     image: ola_image
-  - "TAXI" : taxi
+  - "TAXI": "Taxi"
     image: taxi_image
-  - "DIDI": didi
+  - "DIDI": "DiDi"
     image: didi_image
-  - "BUS" : bus
+  - "BUS": "Bus"
     image: bus_image
-  - "TRAIN" : train
+  - "TRAIN": "Train"
     image: train_image
-  - "TRAM" : tram
+  - "TRAM": "Tram"
     image: tram_image
-  - "OTHER" : other
+  - "OTHER": "Other"
     image: other_image
 ---
 question: |

@@ -46,7 +46,7 @@ code: |
   user_email
   transport_type
   
-  if transport_type == 'other':
+  if transport_type == "Other":
     other_details
     transport_type = other_details
   else:

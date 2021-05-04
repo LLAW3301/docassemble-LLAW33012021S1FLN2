@@ -16,3 +16,21 @@
 #postcode-input-container, #postcode-input-container .dainput-embedded {
   max-width: 140px;
 }
+
+/*
+Scrapped attempt at making postcodes dropdown be located directly attached under the input field
+It worked, but didn't look good, and the browser's auto-fill dropdown got in the way
+
+#postcode-input-container {
+  position: relative;
+  display: inline-block;
+}
+
+#postcodes-list {
+  position: absolute;
+  display: block;
+  width: 100%;
+  background-color: #f9f9f9;
+  z-index: 1;
+}
+*/

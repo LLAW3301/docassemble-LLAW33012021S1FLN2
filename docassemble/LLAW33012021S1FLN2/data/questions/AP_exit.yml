@@ -18,7 +18,7 @@ subquestion: |
   %else:
     attempted to email it to your address (${ user_email }), however an error occurred, so instead
   %endif
-  you can download it [here].
+  you can download it here: ${ action_button_html(FLNreport_file.url_for(), label="<span>download</span>", color="secondary", size="sm", icon="file-download", classname="download-button") }
   
   Unfortunately, DPTI doesn't provide an email address to send these to, so we ask that you print the report and send it by mail to:
   
@@ -28,8 +28,6 @@ subquestion: |
   Adelaide SA 5001
   </p>
 
-  Thankyou for using the Paws Rights app, we hope that with your help in sending these reports, and gathering statistics, we can push for change!
+  Thankyou for using the Paws Rights app, we hope that with your help in sending these reports (and gathering statistics) we can push for change!
   
   <div class="end-image"><img src="${ TransparentLogo.url_for() }" width="150" height="150"></div>
-  
-  [here]: ${ FLNreport_file.url_for() }

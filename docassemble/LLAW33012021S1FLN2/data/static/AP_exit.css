@@ -4,6 +4,7 @@
   padding: 0.3em 0.6em 0.3em 0.6em;
   margin: 0 0 0.8em 0;
 }
+
 .end-image {
   min-width: 50%;
   max-width: 100%;
@@ -14,4 +15,9 @@
   width: 100%;
   height: 100%;
   margin: auto;
+}
+
+.download-button {
+  padding-top: 0.1em !important;
+  padding-bottom: 0.1em !important;
 }

@@ -18,12 +18,20 @@ fields:
   - Last Name: FLNrefused_lastname
 ---
 question: |
+  % if FLNself_reporting:
   What is your contact number?
+  % else:
+  Please enter the phone number of the person who was refused access.
+  % endif
 fields:
  - Phone Number: FLNphone
 ---
 question: |
+  % if FLNself_reporting:
   What is your e-mail address?
+  % else:
+  Please enter the e-mail address of the person who was refused access.
+  % endif
 fields:
   - E-mail: user_email
     datatype: email
@@ -91,14 +99,14 @@ fields:
     input type: area
 ---
 question: |
-  Did the refusing person ask to see your accredited assistance animal identification?
+  Did the refusing person ask to see your accredited assistance animal ID?
 field: refuser_asked_animal_id
 buttons:
   - "Yes": Yes
   - "No": No
 ---
 question: |
-  Did you provide identification?
+  Did you provide ID?
 field: user_show_id
 buttons:
   - "Yes": Yes

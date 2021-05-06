@@ -17,3 +17,5 @@ script: |
     $(".da-field-buttons").addClass("multicolor-buttons");
   </script>
 ---
+code: |
+  FLNself_reporting = (FLNperson_reporting == "Person refused")

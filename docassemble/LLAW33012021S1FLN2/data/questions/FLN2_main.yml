@@ -5,6 +5,7 @@ include:
   - AP_exit.yml
   - AP_location.yml
   - EP_person_reporting.yml
+  - AP_review.yml
 ---
 features: 
   css: FLN_common.css
@@ -35,7 +36,7 @@ code: |
   
   FLNreporter_firstname = FLNuser_firstname
   FLNreporter_lastname = FLNuser_lastname
-  if FLNperson_reporting == "Person refused":
+  if FLNself_reporting:
     FLNrefused_firstname = FLNuser_firstname
     FLNrefused_lastname = FLNuser_lastname
   else:
@@ -79,6 +80,8 @@ code: |
     uploaded_files
   else:
     uploaded_files = None
+    
+  FLNreview_complete
 
   report_email_sent_ok = send_email(to=user_email, template=FLNreport_email_template, attachments=[FLNreport_file])
   

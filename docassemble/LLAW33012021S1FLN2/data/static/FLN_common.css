@@ -56,7 +56,7 @@
     background-color: rgba(255,255,255,0.3);
 }
 .navbar form button{
-    background-color: rgba(255,255,255,0.3);
+    /*background-color: rgba(255,255,255,0.3);*/
     color:#FFF;
     /* setting the border to 0 disables the border around the button */
     border:0;

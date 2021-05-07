@@ -13,13 +13,27 @@ objects:
 event: endpoints['FLNexit_screen']
 question: Report complete
 subquestion: |
-  A report you can send to DPTI (the Department for Planning, Transport and Infrastructure) has been generated. We
-  %if report_email_sent_ok:
-    have emailed it to your address (${ user_email }), however if you don't receive it within a few minutes
-  %else:
-    attempted to email it to your address (${ user_email }), however an error occurred, so instead
-  %endif
-  you can download it here: ${ action_button_html(FLNreport_file.url_for(), label="<span>download</span>", color="secondary", size="sm", icon="file-download", classname="download-button") }
+  A report you can send to DPTI (the Department for Planning,
+  Transport and Infrastructure) has been generated. We
+  % if FLNself_reporting:
+  %   if report_email_sent_ok:
+  have emailed it to your address (${ user_email }),
+  however if you don't receive it within a few minutes you can
+  %   else:
+  attempted to email it to your address (${ user_email }),
+  however an error occurred, so instead you can
+  %   endif
+  % else:
+  %   if report_email_sent_ok:
+  have emailed it to the provided address (${ user_email }),
+  however if it doesn't arrive within a few minutes or you need
+  to access it yourself, you can
+  %   else:
+  attempted to email it to the provided address (${ user_email }),
+  however an error occurred. Instead, you can also
+  %   endif
+  % endif
+  download it here: ${ action_button_html(FLNreport_file.url_for(), label="<span>download</span>", color="secondary", size="sm", icon="file-download", classname="download-button") }
   
   Unfortunately, DPTI doesn't provide an email address to send these to, so we ask that you print the report and send it by mail to:
   

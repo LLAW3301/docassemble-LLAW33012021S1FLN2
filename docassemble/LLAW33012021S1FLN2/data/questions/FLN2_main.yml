@@ -1,5 +1,5 @@
 ---
-include: 
+include:
   - FLN2_questions.yml
   - AP_template_building.yml
   - AP_exit.yml
@@ -9,14 +9,23 @@ include:
 ---
 features: 
   css: FLN_common.css
+  javascript: nicebackbutton.js
 ---
 objects:
   - endpoints: DADict
+  - LogoPR: DAStaticFile.using(filename='paws_rights_logo_yellow.png')
 ---
 # Define constant values here so we can reconfigure them later
 initial: true
 code: |
   FLNstats_email_recipient = "alex@westminstersoftware.com"
+---
+initial: true
+code: |
+  # Place our logo in the top left, by setting the
+  # 'logo' metadata to a custom html string
+  HAAlogostring = '<div class="media"><img src="{}" class="mr-3" height="50"><div class="media-body"></div></div>'.format(LogoPR.url_for())
+  set_parts(logo=HAAlogostring)
 ---
 mandatory: True
 question: Paws Rights

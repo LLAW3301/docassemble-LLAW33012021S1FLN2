@@ -1,0 +1,36 @@
+---
+include: 
+  - FLN2_questions.yml
+  - AP_template_building.yml
+  - AP_exit.yml
+  - AP_location.yml
+---
+attachment:
+  name: Transport Refusal Report
+  filename: Transport-Refusal-Report-${ today().strftime('%Y-%m-%d') }
+  variable name: FLNreport_file
+  docx template file: Jinja.docx
+  valid formats:
+    - pdf
+---
+template: FLNreport_email_template
+subject: |
+  Transport Refusal Report | Paws Rights
+content: |
+  Greetings, ${ FLNrefused_firstname }
+
+  Your transport refusal report is attached. Please print & send it by mail to:
+  
+  Department for Infrastructure and Transport<br>
+  77 Grenfell Street<br>
+  Adelaide SA 5000
+  
+  Thankyou,<br>
+  The Paws Rights Team
+---
+template: FLNstats_email_template
+subject: |
+  Stats for Transport Refusal | Paws Rights
+content: |
+  RefusalDate, RefusalTime, RefusalPostcode, TransportType, PersonReporting, DidRefuserStateReason, DidRefuserAskForAnimalID, DidUserShowID, DidUserContinueUnlawfulReport, DidUserAttachEvidence<br>
+  ${ FLNdate.strftime('%Y-%m-%d') }, ${ FLNrefusal_time.strftime('%H:%M:%S') }, ${ FLNrefusal_postcode }, ${ transport_type }, ${ FLNperson_reporting }, ${ FLNrefusal_reason }, ${ refuser_asked_animal_id }, ${ user_show_id }, ${ continue_unlawful_report }, ${ attach_evidence }

@@ -1,0 +1,12 @@
+features:
+  javascript: datereplace.js
+---
+question: Date of incident
+subquestion: |
+ When did the incident occur? This defaults to today's date, but you can edit it if needed
+fields:
+  - Date: CMSdate
+    datatype: date
+    default: |
+      ${ today() }
+---

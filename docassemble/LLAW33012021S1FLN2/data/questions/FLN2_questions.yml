@@ -1,0 +1,157 @@
+#---
+#features:
+#  javascript: datereplace.js
+---
+include:
+  - LM_image_sets.yml
+---
+question: |
+  What is your full name?
+fields:
+  - First Name: FLNuser_firstname
+  - Last Name: FLNuser_lastname
+---
+question: |
+  Please enter the full name of the person who has been refused transportation.
+fields:
+  - First Name: FLNrefused_firstname
+  - Last Name: FLNrefused_lastname
+---
+question: |
+  % if FLNself_reporting:
+  What is your contact number?
+  % else:
+  Please enter the phone number of the person who was refused access.
+  % endif
+fields:
+ - Phone Number: FLNphone
+---
+question: |
+  % if FLNself_reporting:
+  What is your e-mail address?
+  % else:
+  Please enter the e-mail address of the person who was refused access.
+  % endif
+fields:
+  - E-mail: user_email
+    datatype: email
+---
+question: |
+  Which kind of transport were you trying to use when you were refused?
+field: transport_type
+buttons:
+  - "UBER": "Uber"
+    image: uber_image
+  - "OLA": "Ola"
+    image: ola_image
+  - "TAXI": "Taxi"
+    image: taxi_image
+  - "DIDI": "DiDi"
+    image: didi_image
+  - "BUS": "Bus"
+    image: bus_image
+  - "TRAIN": "Train"
+    image: train_image
+  - "TRAM": "Tram"
+    image: tram_image
+  - "OTHER": "Other"
+    image: other_image
+---
+question: |
+  Enter the name of the company / person that refused you service because of your assistance animal
+fields:
+  - Details: other_details
+    input type: area
+---
+question: Date of incident
+subquestion: |
+ When did the incident occur? This defaults to today's date, but you can edit it if needed
+fields:
+  - Date: FLNdate
+    datatype: date
+    default: |
+      ${ today() }
+---
+question: |
+  What time did the refusal occur?
+fields:
+  # Based on https://docassemble.org/docs/fields.html#time
+  # and https://docassemble.org/docs/functions.html#date%20functions
+  # For some reason current_datetime().time() doesn't work to set the default time,
+  # while e.g. as_datetime('07:30 AM').time() does, so use something based on
+  # that as a workaround
+  - Time: FLNrefusal_time
+    datatype: time
+    default: |
+      ${ as_datetime(current_datetime().strftime('%H:%M:00')).time() }
+---
+question: |
+  Did the driver state their reason for the refusal?
+field: FLNrefusal_reason
+buttons:
+  - "Yes": Yes
+  - "No": No
+script: |
+  <script>
+    $(".da-field-buttons").addClass("yes-no-buttons");
+  </script>
+---
+question: |
+  What was said by the driver during the refusal?
+fields:
+  - Details: driver_statement
+    input type: area
+---
+question: |
+  Were you asked to show accredited assistance animal ID?
+field: refuser_asked_animal_id
+buttons:
+  - "Yes": Yes
+  - "No": No
+script: |
+  <script>
+    $(".da-field-buttons").addClass("yes-no-buttons");
+  </script>
+---
+question: |
+  Did you provide ID?
+field: user_show_id
+buttons:
+  - "Yes": Yes
+  - "No": No
+script: |
+  <script>
+    $(".da-field-buttons").addClass("yes-no-buttons");
+  </script>
+---
+question: |
+  Do you have any supporting evidence you want to attach?
+field: attach_evidence
+buttons:
+  - "Yes": Yes
+  - "No": No
+script: |
+  <script>
+    $(".da-field-buttons").addClass("yes-no-buttons");
+  </script>
+---
+question: |
+  Unfortunately, this is not unlawful as you did not provide id.
+subquestion: |
+  Would you like to continue anyway?
+field: continue_unlawful_report
+buttons:
+  - "Yes": Yes
+  - "No": No
+script: |
+  <script>
+    $(".da-field-buttons").addClass("yes-no-buttons");
+  </script>
+---
+question: |
+  Please add any files.
+fields:
+  - Documents: uploaded_files
+    datatype: files
+---
+

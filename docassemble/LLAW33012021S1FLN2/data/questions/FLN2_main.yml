@@ -1,0 +1,115 @@
+---
+include:
+  - FLN2_questions.yml
+  - AP_template_building.yml
+  - AP_exit.yml
+  - AP_location.yml
+  - EP_person_reporting.yml
+  - AP_review.yml
+---
+features: 
+  css: FLN_common.css
+  javascript: nicebackbutton.js
+---
+objects:
+  - endpoints: DADict
+  - LogoPR: DAStaticFile.using(filename='paws_rights_logo_yellow.png')
+---
+# Define constant values here so we can reconfigure them later
+initial: true
+code: |
+  FLNstats_email_recipient = "alex@westminstersoftware.com"
+---
+template: disclaimer
+content: |
+   ***Disclaimer:***
+   **This application does not provide legal advice and should not be taken as such. This should not be considered a legal document.** 
+
+---
+initial: true
+code: |
+  # Place our logo in the top left, by setting the
+  # 'logo' metadata to a custom html string
+  HAAlogostring = '<div class="media"><img src="{}" class="mr-3" height="50"><div class="media-body"></div></div>'.format(LogoPR.url_for())
+  set_parts(logo=HAAlogostring)
+---
+mandatory: True
+question: Paws Rights
+subquestion: |
+ Welcome to Paws Rights. This app is designed to make reporting transport refusals quick and easy for for those who are refused because of their assistance animal. 
+ 
+   ${ disclaimer }
+
+buttons:
+  - I agree and wish to continue: continue 
+  - I do not agree and wish to exit: exit
+    url: https://www.dpti.sa.gov.au/contact_us/compliments_and_complaints
+script: |
+  <script>
+    $(".da-field-buttons").addClass("continue-exit-buttons");
+  </script>
+---
+mandatory: True
+code: |
+  FLNperson_reporting
+  FLNuser_firstname
+  FLNuser_lastname
+  
+  FLNreporter_firstname = FLNuser_firstname
+  FLNreporter_lastname = FLNuser_lastname
+  if FLNself_reporting:
+    FLNrefused_firstname = FLNuser_firstname
+    FLNrefused_lastname = FLNuser_lastname
+  else:
+    FLNrefused_firstname
+    FLNrefused_lastname
+  
+  FLNphone
+  user_email
+  transport_type
+  
+  if transport_type == "Other":
+    other_details
+    transport_type = other_details
+  else:
+    other_details = "N/A"
+    
+  FLNdate
+  FLNrefusal_time
+  FLNrefusal_postcode
+  FLNrefusal_reason
+ 
+  if FLNrefusal_reason == 'Yes':
+    driver_statement
+  else:
+    driver_statement = "N/A"
+
+  refuser_asked_animal_id
+  if refuser_asked_animal_id == 'Yes':
+    user_show_id
+  if refuser_asked_animal_id == 'No':
+    user_show_id = 'N/A'
+  if user_show_id == 'No':
+    continue_unlawful_report
+    if continue_unlawful_report == 'No':
+      message("Exit screen","Thanks for using!")
+  else:
+    continue_unlawful_report = "N/A"
+  
+  attach_evidence
+  if attach_evidence == "Yes":
+    uploaded_files
+  else:
+    uploaded_files = []
+    
+  FLNreview_complete
+
+  report_email_sent_ok = send_email(to=user_email, template=FLNreport_email_template, attachments=[FLNreport_file])
+  
+  #uncomment this line to send statistic email
+  #stats_email_sent_ok = send_email(to=FLNstats_email_recipient, template=FLNstats_email_template)
+  
+  # TODO: Handle statistics email failing to send, including if it fails silently (report email is already handled)
+  
+  endpoints['FLNexit_screen']
+---

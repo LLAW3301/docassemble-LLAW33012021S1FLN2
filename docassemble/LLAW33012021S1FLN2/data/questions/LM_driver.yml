@@ -1,0 +1,35 @@
+---
+include:
+  - LM_questions.yml
+---
+mandatory: True
+code: |
+  transport_type
+  if transport_type == 'other':
+    other_details
+    transport_type = other_details
+
+  refuser_asked_animal_id
+  if refuser_asked_animal_id == 'Yes':
+    user_show_id
+  if refuser_asked_animal_id == 'No':
+    user_show_id = 'Yes'
+  if user_show_id == 'No':
+    continue_unlawful_report
+    if continue_unlawful_report == 'No':
+      message("Exit screen","Thanks for using!")
+  attach_evidence
+  if attach_evidence == "Yes":
+    uploaded_files
+  user_email
+---
+
+#checking to see output, wont be included in final ver
+mandatory: True
+question: |
+  Your choices so far:
+subquestion: |
+  images: ${uploaded_files}.
+#  Refuser asked for id : ${refuser_asked_animal_id}
+#  User showed id : ${user_show_id}
+---

@@ -1,0 +1,73 @@
+---
+include:
+  - LM_image_sets.yml
+---
+question: |
+  What is the type of transportation you have been refused?
+field: transport_type
+buttons:
+  - "UBER" : uber
+    image: uber_image
+  - "OLA" : ola
+    image: ola_image
+  - "TAXI" : taxi
+    image: taxi_image
+  - "DIDI": didi
+    image: didi_image
+  - "BUS" : bus
+    image: bus_image
+  - "TRAIN" : train
+    image: train_image
+  - "TRAM" : tram
+    image: tram_image
+  - "OTHER" : other
+    image: other_image
+---
+question: |
+  Enter the name of the company / person that refused you service because of your assistance animal
+fields:
+  - Details: other_details
+    input type: area
+---
+question: |
+  Did the refusing person ask to see your accredited assistance animal identification?
+field: refuser_asked_animal_id
+buttons:
+  - "Yes": Yes
+  - "No": No
+---
+question: |
+  Did you provide identification?
+field: user_show_id
+buttons:
+  - "Yes": Yes
+  - "No": No
+---
+question: |
+  Do you have any supporting evidence you want to attach?
+field: attach_evidence
+buttons:
+  - "Yes": Yes
+  - "No": No
+---
+question: |
+  Unfortuneately, this is not unlawful as you did not provide id.
+subquestion: |
+  Would you like to continue anyway?
+field: continue_unlawful_report
+buttons:
+  - "Yes": Yes
+  - "No": No
+---
+question: |
+  Please attach any supporting documents/photos
+fields:
+  - Documents: uploaded_files
+    datatype: files
+---
+question: |
+  Enter your email
+fields:
+  - E-mail: user_email
+    datatype: email
+    required: False

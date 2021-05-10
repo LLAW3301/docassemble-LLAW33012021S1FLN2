@@ -1,0 +1,38 @@
+modules:
+  - .progressivedisclosure
+---
+features:
+  css: progressivedisclosure.css
+---
+template: incident_info
+subject: |
+  Further incident information
+content: |
+  Questions| Answers
+  ------------------------|----------
+  Transport type          |${other_details if (transport_type == "Other") else transport_type}
+  Refusal date            |${FLNdate}
+  Refusal time            |${FLNrefusal_time}
+  Refusal postcode        |${FLNrefusal_postcode}
+  Did refuser state why?  |${FLNrefusal_reason}
+  Refusal reason          |${driver_statement}
+  Was animal ID requested?|${refuser_asked_animal_id}
+  Was animal ID shown?    |${user_show_id}
+  Is evidence attached?   |${attach_evidence}
+---
+question: |
+  Review your details.
+subquestion: |
+  Please check that these personal details are correct:
+  
+  Questions|Answers
+  -----------------------------|----------
+  Name of person reporting     |${FLNreporter_firstname} ${FLNreporter_lastname}
+  Refused person's name        |${FLNrefused_firstname} ${FLNrefused_lastname}
+  Refused person's e-mail      |${user_email}
+  Refused person's phone number|${FLNphone}
+  
+  And optionally that the rest of the incident information is correct:
+  
+  ${ prog_disclose(incident_info) }
+continue button field: FLNreview_complete

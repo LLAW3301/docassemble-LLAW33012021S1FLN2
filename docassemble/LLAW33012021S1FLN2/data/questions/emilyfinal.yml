@@ -1,0 +1,47 @@
+metadata:
+  title: Default playground interview
+  short title: Test
+  comment: This is a learning tool.  Feel free to write over it.
+---
+objects:
+  - client: Individual
+---
+mandatory: True
+question: Paws Rights
+subquestion: |
+ Welcome to the Paws Rights app. This app is intended to make it easy and accessible for people to report when they are refused into transport because of their assistance animals. 
+ 
+ Please note that your information may be recorded for statistic and data purposes. 
+buttons:
+  - I agree and wish to continue: continue
+  - I do not agree and wish to exit: exit
+---
+mandatory: True 
+question: |
+  Who is reporting the incident?
+field: person_reporting
+buttons:
+  - Yourself: FLN_yourself
+  - Partner/Friend: FLN_partner_friend 
+  - Carer: FLN_carer 
+  - Relative: FLN_relative
+--- 
+mandatory: True 
+question: |
+  What is your name?
+fields:
+  - First Name: client.name.first
+  - Middle Name: client.name.middle
+    required: False
+  - Last Name: client.name.last
+  - Suffix: client.name.suffix
+    required: False
+    code: name_suffix()
+---
+question: |
+  What is your date of birth?
+fields:
+  - Date of Birth: client.birthdate
+    datatype: date
+---
+

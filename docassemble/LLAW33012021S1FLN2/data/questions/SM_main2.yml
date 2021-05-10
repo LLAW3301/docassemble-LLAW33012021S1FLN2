@@ -1,0 +1,12 @@
+---
+mandatory: True
+code: |
+  
+question: |
+  Did the driver state their reason for the refusal?
+yesno: FLNrefusal_reason
+
+  if FLNrefusal_reason == 'yes':
+  
+Please breifly state what the driver said to you.   
+---

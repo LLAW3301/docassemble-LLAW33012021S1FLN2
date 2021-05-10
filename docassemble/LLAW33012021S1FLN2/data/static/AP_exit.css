@@ -1,0 +1,23 @@
+.dpti-address {
+  background-color: rgb(230,230,230);
+  border-left: 0.2em solid rgb(100,100,100);
+  padding: 0.3em 0.6em 0.3em 0.6em;
+  margin: 0 0 0.8em 0;
+}
+
+.end-image {
+  min-width: 50%;
+  max-width: 100%;
+  width: 15em;
+  margin: auto;
+}
+.end-image img {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+}
+
+.download-button {
+  padding-top: 0.1em !important;
+  padding-bottom: 0.1em !important;
+}

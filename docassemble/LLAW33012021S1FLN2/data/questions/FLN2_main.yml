@@ -20,6 +20,12 @@ initial: true
 code: |
   FLNstats_email_recipient = "alex@westminstersoftware.com"
 ---
+template: disclaimer
+content: |
+   ***Disclaimer:***
+   **This application does not provide legal advice and should not be taken as such. This should not be considered a legal document.** 
+
+---
 initial: true
 code: |
   # Place our logo in the top left, by setting the
@@ -30,12 +36,18 @@ code: |
 mandatory: True
 question: Paws Rights
 subquestion: |
- Welcome to Paws Rights. This app is intended to make it easy and accessible for people to report when they are refused into transport because of their assistance animals. 
+ Welcome to Paws Rights. This app is designed to make reporting transport refusals quick and easy for for those who are refused because of their assistance animal. 
  
- Please note that your information may be recorded for statistic and data purposes.
+   ${ disclaimer }
+
 buttons:
-  - I agree and wish to continue: continue
+  - I agree and wish to continue: continue 
   - I do not agree and wish to exit: exit
+    url: https://www.dpti.sa.gov.au/contact_us/compliments_and_complaints
+script: |
+  <script>
+    $(".da-field-buttons").addClass("continue-exit-buttons");
+  </script>
 ---
 mandatory: True
 code: |
@@ -88,13 +100,14 @@ code: |
   if attach_evidence == "Yes":
     uploaded_files
   else:
-    uploaded_files = None
+    uploaded_files = []
     
   FLNreview_complete
 
   report_email_sent_ok = send_email(to=user_email, template=FLNreport_email_template, attachments=[FLNreport_file])
   
-  stats_email_sent_ok = send_email(to=FLNstats_email_recipient, template=FLNstats_email_template)
+  #uncomment this line to send statistic email
+  #stats_email_sent_ok = send_email(to=FLNstats_email_recipient, template=FLNstats_email_template)
   
   # TODO: Handle statistics email failing to send, including if it fails silently (report email is already handled)
   

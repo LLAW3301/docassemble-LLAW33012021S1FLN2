@@ -37,7 +37,7 @@ fields:
     datatype: email
 ---
 question: |
-  What is the type of transportation you have been refused?
+  Which kind of transport were you trying to use when you were refused?
 field: transport_type
 buttons:
   - "UBER": "Uber"
@@ -91,19 +91,27 @@ field: FLNrefusal_reason
 buttons:
   - "Yes": Yes
   - "No": No
+script: |
+  <script>
+    $(".da-field-buttons").addClass("yes-no-buttons");
+  </script>
 ---
 question: |
-  Please breifly state what the driver said to you.   
+  What was said by the driver during the refusal?
 fields:
   - Details: driver_statement
     input type: area
 ---
 question: |
-  Did the refusing person ask to see your accredited assistance animal ID?
+  Were you asked to show accredited assistance animal ID?
 field: refuser_asked_animal_id
 buttons:
   - "Yes": Yes
   - "No": No
+script: |
+  <script>
+    $(".da-field-buttons").addClass("yes-no-buttons");
+  </script>
 ---
 question: |
   Did you provide ID?
@@ -111,6 +119,10 @@ field: user_show_id
 buttons:
   - "Yes": Yes
   - "No": No
+script: |
+  <script>
+    $(".da-field-buttons").addClass("yes-no-buttons");
+  </script>
 ---
 question: |
   Do you have any supporting evidence you want to attach?
@@ -118,6 +130,10 @@ field: attach_evidence
 buttons:
   - "Yes": Yes
   - "No": No
+script: |
+  <script>
+    $(".da-field-buttons").addClass("yes-no-buttons");
+  </script>
 ---
 question: |
   Unfortunately, this is not unlawful as you did not provide id.
@@ -127,9 +143,13 @@ field: continue_unlawful_report
 buttons:
   - "Yes": Yes
   - "No": No
+script: |
+  <script>
+    $(".da-field-buttons").addClass("yes-no-buttons");
+  </script>
 ---
 question: |
-  Please attach any supporting documents/photos
+  Please add any files.
 fields:
   - Documents: uploaded_files
     datatype: files

@@ -3,10 +3,10 @@ features:
   css: EP_person_reporting.css
 ---
 question: |
-  Who is reporting the incident?
+  Who is the one reporting?
 field: FLNperson_reporting
 buttons:
-  - Yourself: "Person refused"
+  - You: "Person refused"
   - Partner: "Partner of person refused"
   - Friend: "Friend of person refused"
   - Carer: "Carer of person refused" 

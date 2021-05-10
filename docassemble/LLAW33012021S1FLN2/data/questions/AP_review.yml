@@ -8,7 +8,7 @@ template: incident_info
 subject: |
   Further incident information
 content: |
-  Information|Your input
+  Questions| Answers
   ------------------------|----------
   Transport type          |${other_details if (transport_type == "Other") else transport_type}
   Refusal date            |${FLNdate}
@@ -21,11 +21,11 @@ content: |
   Is evidence attached?   |${attach_evidence}
 ---
 question: |
-  Review your details
+  Review your details.
 subquestion: |
   Please check that these personal details are correct:
   
-  Information|Your input
+  Questions|Answers
   -----------------------------|----------
   Name of person reporting     |${FLNreporter_firstname} ${FLNreporter_lastname}
   Refused person's name        |${FLNrefused_firstname} ${FLNrefused_lastname}

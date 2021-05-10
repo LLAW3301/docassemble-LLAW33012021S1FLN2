@@ -120,7 +120,7 @@ buttons:
   - "No": No
 ---
 question: |
-  Unfortuneately, this is not unlawful as you did not provide id.
+  Unfortunately, this is not unlawful as you did not provide id.
 subquestion: |
   Would you like to continue anyway?
 field: continue_unlawful_report

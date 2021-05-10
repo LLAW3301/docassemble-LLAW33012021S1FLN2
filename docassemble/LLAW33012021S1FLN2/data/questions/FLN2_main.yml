@@ -32,7 +32,7 @@ question: Paws Rights
 subquestion: |
  Welcome to Paws Rights. This app is intended to make it easy and accessible for people to report when they are refused into transport because of their assistance animals. 
  
- Please note that your information may be recorded for statistic and data purposes. 
+ Please note that your information may be recorded for statistic and data purposes.
 buttons:
   - I agree and wish to continue: continue
   - I do not agree and wish to exit: exit

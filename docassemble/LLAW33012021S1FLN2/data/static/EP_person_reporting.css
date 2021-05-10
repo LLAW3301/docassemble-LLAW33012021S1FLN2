@@ -1,3 +1,13 @@
+fieldset.multicolor-buttons div button {
+  background-color: #E0782C !important;
+  border-color: #EF8817 !important;
+}
+fieldset.multicolor-buttons div button:hover {
+  background-color: #C46827 !important; /* #5a6268 */
+  border-color: #C46827 !important;
+}
+
+/*
 fieldset.multicolor-buttons div button:nth-of-type(6n+0) {
   background-color: rgb(255,0,0) !important;
 }
@@ -16,3 +26,4 @@ fieldset.multicolor-buttons div button:nth-of-type(6n+4) {
 fieldset.multicolor-buttons div button:nth-of-type(6n+5) {
   background-color: rgb(255,0,255) !important;
 }
+*/

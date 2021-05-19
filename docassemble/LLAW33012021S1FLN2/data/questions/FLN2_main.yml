@@ -7,6 +7,9 @@ include:
   - EP_person_reporting.yml
   - AP_review.yml
 ---
+modules:
+  - .sanitise
+---
 features: 
   css: FLN_common.css
   javascript: nicebackbutton.js
@@ -33,12 +36,51 @@ code: |
   HAAlogostring = '<div class="media"><img src="{}" class="mr-3" height="50"><div class="media-body"></div></div>'.format(LogoPR.url_for())
   set_parts(logo=HAAlogostring)
 ---
+# mandatory: True
+# code: |
+#   try:
+#     from html import escape  # python 3.x
+#   except ImportError:
+#     from cgi import escape  # python 2.x
+#   
+#   def sanitise_nonword_match(match):
+#     return escape(match.group(0)) # group 0 is the full matched text
+# 
+#   def sanitise(text):
+#     #text = r"**asdf**<b>hdfd</b><b>ut#\r#urir</b>bbbbbb_bb<br>aaaa\aaa\\aaa\\\aaa\\\\aaa\\\\\aaa([\\\*\{\}\[\]\(\)\|`_<>#\+\.!-])"
+#     log(re.sub("(\r\n|\r|\n)", "NEWLINE", text), 'console')
+#     
+#     # escape backslashes specially first. I don't know why this is necessary
+#     text = re.sub(r"\\", r"\\\\", text)
+#     log(re.sub("(\r\n|\r|\n)", "NEWLINE", text), 'console')
+#     
+#     # escape certain markdown syntax (leave _, < and > alone)
+#     text = re.sub(r"([\\\*\{\}\[\]\(\)\|`#\+\.!-])", r"\\\1", text)
+#     log(re.sub("(\r\n|\r|\n)", "NEWLINE", text), 'console')
+#     
+#     # escape all html-syntax using html escape sequences
+#     # text = re.sub("\W", sanitise_nonword_match, text)
+#     text = escape(text)
+#     log(re.sub("(\r\n|\r|\n)", "NEWLINE", text), 'console')
+#     
+#     # for some reason escaping underscores as \_ as you normally would
+#     # in markdown duplicates them. Instead, escape them with an html
+#     # escape sequence: &#95;
+#     text = re.sub(r"_", r"&#95;", text)
+#     log(re.sub("(\r\n|\r|\n)", "NEWLINE", text), 'console')
+#     
+#     # replace newlines with <br> tags, as these work properly in markdown tables
+#     text = re.sub(r"(\r\n|\r|\n)", "<br>", text)
+#     log(re.sub("(\r\n|\r|\n)", "NEWLINE", text), 'console')
+#     
+#     return text
+---
 mandatory: True
 question: Paws Rights
 subquestion: |
- Welcome to Paws Rights. This app is designed to make reporting transport refusals quick and easy for for those who are refused because of their assistance animal. 
- 
-   ${ disclaimer }
+  Welcome to Paws Rights. This app is designed to make reporting transport refusals quick and easy for for those who are refused because of their assistance animal.
+  
+  ${ disclaimer }
 
 buttons:
   - I agree and wish to continue: continue 
@@ -100,7 +142,7 @@ code: |
   if attach_evidence == "Yes":
     uploaded_files
   else:
-    uploaded_files = []
+    uploaded_files = ["No additional evidence attached"]
     
   FLNreview_complete
 

@@ -61,11 +61,11 @@ question: |
   Enter the name of the company / person that refused you service because of your assistance animal
 fields:
   - Details: other_details
-    input type: area
+#    input type: area
 ---
-question: Date of incident
+question: When did the incident occur?
 subquestion: |
- When did the incident occur? This defaults to today's date, but you can edit it if needed
+  This defaults to today's date, but you can edit it if needed
 fields:
   - Date: FLNdate
     datatype: date
@@ -101,9 +101,14 @@ question: |
 fields:
   - Details: driver_statement
     input type: area
+    datatype: raw
 ---
 question: |
+  % if FLNself_reporting:
   Were you asked to show accredited assistance animal ID?
+  % else:
+  Did the driver ask to see accredited assistance animal ID?
+  % endif
 field: refuser_asked_animal_id
 buttons:
   - "Yes": Yes
@@ -114,7 +119,11 @@ script: |
   </script>
 ---
 question: |
+  % if FLNself_reporting:
   Did you provide ID?
+  % else:
+  Was ID provided?
+  % endif
 field: user_show_id
 buttons:
   - "Yes": Yes
@@ -136,7 +145,7 @@ script: |
   </script>
 ---
 question: |
-  Unfortunately, this is not unlawful as you did not provide id.
+  Unfortunately, this is not unlawful as you did not provide ID.
 subquestion: |
   Would you like to continue anyway?
 field: continue_unlawful_report
@@ -153,5 +162,7 @@ question: |
 fields:
   - Documents: uploaded_files
     datatype: files
+    accept: |
+      "image/jpeg, image/png"
 ---
 

@@ -21,7 +21,10 @@ objects:
 # Define constant values here so we can reconfigure them later
 initial: true
 code: |
-  FLNstats_email_recipient = "alex@westminstersoftware.com"
+  # Write an email here to send statistics to that address.
+  # For example:
+  # FLNstats_email_recipient = "alex@westminstersoftware.com"
+  FLNstats_email_recipient = None
 ---
 template: disclaimer
 content: |
@@ -109,10 +112,10 @@ code: |
 
   report_email_sent_ok = send_email(to=user_email, template=FLNreport_email_template, attachments=[FLNreport_file])
   
-  #uncomment this line to send statistic email
-  #stats_email_sent_ok = send_email(to=FLNstats_email_recipient, template=FLNstats_email_template)
-  
-  # TODO: Handle statistics email failing to send, including if it fails silently (report email is already handled)
+  if not FLNstats_email_recipient == None:
+    stats_email_sent_ok = send_email(to=FLNstats_email_recipient, template=FLNstats_email_template)
+    # TODO: Handle statistics email failing to send, including
+    # if it fails silently (report email is already handled)
   
   endpoints['FLNexit_screen']
 ---

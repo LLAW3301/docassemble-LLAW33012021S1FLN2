@@ -10,6 +10,8 @@
   max-width: 100%;
   width: 15em;
   margin: auto;
+  padding-top: 1.2em;
+  padding-bottom: 2.5em;
 }
 .end-image img {
   width: 100%;
@@ -21,3 +23,21 @@
   padding-top: 0.1em !important;
   padding-bottom: 0.1em !important;
 }
+
+.center-button-container {
+  width: 100%;
+  text-align: center;
+}
+/*
+.center-button-container {
+  margin-top:
+  position: relative;
+  width: 100%;
+}
+.center-button-container .btn {
+  position: absolute;
+  left: 50%;
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+*/

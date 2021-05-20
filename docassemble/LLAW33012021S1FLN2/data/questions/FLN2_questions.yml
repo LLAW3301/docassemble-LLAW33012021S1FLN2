@@ -9,13 +9,17 @@ question: |
   What is your full name?
 fields:
   - First Name: FLNuser_firstname
+    datatype: raw
   - Last Name: FLNuser_lastname
+    datatype: raw
 ---
 question: |
   Please enter the full name of the person who has been refused transportation.
 fields:
   - First Name: FLNrefused_firstname
+    datatype: raw
   - Last Name: FLNrefused_lastname
+    datatype: raw
 ---
 question: |
   % if FLNself_reporting:
@@ -25,6 +29,7 @@ question: |
   % endif
 fields:
  - Phone Number: FLNphone
+   datatype: raw
 ---
 question: |
   % if FLNself_reporting:
@@ -61,7 +66,7 @@ question: |
   Enter the name of the company / person that refused you service because of your assistance animal
 fields:
   - Details: other_details
-#    input type: area
+    datatype: raw
 ---
 question: When did the incident occur?
 subquestion: |

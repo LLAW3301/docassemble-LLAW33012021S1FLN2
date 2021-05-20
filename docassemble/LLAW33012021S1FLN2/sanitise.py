@@ -1,3 +1,8 @@
+# I wrote this without knowing that verbatim() existed
+# However this seems to be slightly more comprehensive,
+# in that it escapes newlines as <br> tags, which work
+# properly inside markdown tables
+
 import re
 
 # html escaping based on https://stackoverflow.com/a/7088472/

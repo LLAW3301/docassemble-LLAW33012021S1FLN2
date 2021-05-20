@@ -1,6 +1,5 @@
 modules:
   - .progressivedisclosure
-  - .sanitise
 ---
 features:
   css: progressivedisclosure.css
@@ -11,15 +10,48 @@ subject: |
 content: |
   Questions| Answers
   ------------------------|----------
-  Transport type          |${other_details if (transport_type == "Other") else transport_type}
+  Transport type          |${sanitise(transport_type)}
   Refusal date            |${FLNdate}
   Refusal time            |${FLNrefusal_time}
-  Refusal postcode        |${FLNrefusal_postcode}
+  Refusal postcode        |${sanitise(FLNrefusal_postcode)}
   Did refuser state why?  |${FLNrefusal_reason}
   Refusal reason          |${sanitise(driver_statement)}
   Was animal ID requested?|${refuser_asked_animal_id}
   Was animal ID shown?    |${user_show_id}
   Is evidence attached?   |${attach_evidence}
+---
+# This runs each time the user clicks the continue button ('Generate Report')
+# on this screen. Without the weird logic here, code tends to get run multiple
+# times. The idea here is that this screen will be displayed only when
+# FLNreview_complete is needed AND is not defined, not when the main code
+# is re-run behind the scenes for weird docassemble reasons.
+# FLNgenerate_report_button_clicked will be automatically made undefined
+# by docassemble when the user clicks the 'Back' button on the next
+# screen (or when they restart the interview).
+# We also have to ensure FLNstats_email_recipient and FLNstats_email_template
+# are defined before sending any emails, otherwise this question's code may
+# be run multiple times if we send a statistics email
+only sets: FLNreview_complete
+code: |
+  if (FLNgenerate_report_button_clicked):
+    FLNstats_email_recipient
+    FLNstats_email_template
+    
+    report_email_sent_ok = send_email(
+      to=user_email,
+      template=FLNreport_email_template,
+      attachments=[FLNreport_file]
+    )
+    
+    if not FLNstats_email_recipient == None:
+      stats_email_sent_ok = send_email(
+        to=FLNstats_email_recipient,
+        template=FLNstats_email_template
+      )
+      # TODO: Handle statistics email failing to send, including
+      # if it fails silently (report email is already handled)
+    
+    FLNreview_complete = True
 ---
 question: |
   Review your details.
@@ -28,12 +60,13 @@ subquestion: |
   
   Questions|Answers
   -----------------------------|----------
-  Name of person reporting     |${FLNreporter_firstname} ${FLNreporter_lastname}
-  Refused person's name        |${FLNrefused_firstname} ${FLNrefused_lastname}
-  Refused person's e-mail      |${user_email}
-  Refused person's phone number|${FLNphone}
+  Name of person reporting     |${sanitise(FLNreporter_firstname)} ${sanitise(FLNreporter_lastname)}
+  Refused person's name        |${sanitise(FLNrefused_firstname)} ${sanitise(FLNrefused_lastname)}
+  Refused person's e-mail      |${sanitise(user_email)}
+  Refused person's phone number|${sanitise(FLNphone)}
   
   And optionally that the rest of the incident information is correct:
   
   ${ prog_disclose(incident_info) }
-continue button field: FLNreview_complete
+continue button field: FLNgenerate_report_button_clicked
+continue button label: Generate Report

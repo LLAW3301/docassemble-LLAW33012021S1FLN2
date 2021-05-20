@@ -17,19 +17,19 @@ subquestion: |
   Transport and Infrastructure) has been generated. We
   % if FLNself_reporting:
   %   if report_email_sent_ok:
-  have emailed it to your address (${ user_email }),
+  have emailed it to your address (${ sanitise(user_email) }),
   however if you don't receive it within a few minutes you can
   %   else:
-  attempted to email it to your address (${ user_email }),
+  attempted to email it to your address (${ sanitise(user_email) }),
   however an error occurred, so instead you can
   %   endif
   % else:
   %   if report_email_sent_ok:
-  have emailed it to the provided address (${ user_email }),
+  have emailed it to the provided address (${ sanitise(user_email) }),
   however if it doesn't arrive within a few minutes or you need
   to access it yourself, you can
   %   else:
-  attempted to email it to the provided address (${ user_email }),
+  attempted to email it to the provided address (${ sanitise(user_email) }),
   however an error occurred. Instead, you can also
   %   endif
   % endif
@@ -46,3 +46,7 @@ subquestion: |
   Thankyou for using the Paws Rights app, we hope that with your help in sending these reports (and gathering statistics) we can push for change!
   
   <div class="end-image"><img src="${ YellowCircleLogo.url_for() }" width="150" height="150"></div>
+  
+  <div class="center-button-container">
+  ${ action_button_html(url_of('restart'), label="Restart & begin a new report", color="danger", size="md") }
+  </div>

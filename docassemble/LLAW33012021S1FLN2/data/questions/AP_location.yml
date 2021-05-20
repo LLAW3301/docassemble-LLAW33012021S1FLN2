@@ -25,6 +25,7 @@ subquestion: |
   </div>
 fields:
   - Postcode: FLNrefusal_postcode
+    datatype: raw
 script: |
   <script>
     const resultsLimit = 20;

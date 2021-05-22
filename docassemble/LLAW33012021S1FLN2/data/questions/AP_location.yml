@@ -5,6 +5,18 @@ features:
   css: AP_location.css
 ---
 objects from file:
+# Postcodes information is from a database by Matthew Proctor, available
+# at https://www.matthewproctor.com/full_australian_postcodes_sa
+# This was pasted into excel, converted to a CSV file containing only
+# the Postcode and Locality columns, and then a Find+Replace run on
+# this CSV file using Notepad++ & Regex:
+#   Find: ^(\d+),(.+)$
+#   Replace with: \t{"postcode": "$1", "placename": "$2"}
+# Then start & end characters were added manually:
+#   Start: [
+#   End: ]
+# And finally the last comma in the list was removed, producing
+# a valid json file to use here.
   - postcodes: postcodes.json
 ---
 initial: true

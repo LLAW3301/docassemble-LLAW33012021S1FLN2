@@ -42,7 +42,7 @@ code: |
 mandatory: True
 question: Paws Rights
 subquestion: |
-  Welcome to Paws Rights. This app is designed to make reporting transport refusals quick and easy for for those who are refused because of their assistance animal.
+  Welcome to Paws Rights. This app is designed to make reporting transport refusals quick and easy for those who have been refused due to their assistance animal.
   
   ${ disclaimer }
 

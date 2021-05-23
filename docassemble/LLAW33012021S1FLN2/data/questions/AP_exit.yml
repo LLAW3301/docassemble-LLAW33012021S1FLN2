@@ -35,7 +35,7 @@ subquestion: |
   % endif
   download it here: ${ action_button_html(FLNreport_file.url_for(), label="<span>download</span>", color="secondary", size="sm", icon="file-download", classname="download-button") }
   
-  Unfortunately, DPTI doesn't provide an email address to send these to, so we ask that you print the report and send it by mail to:
+  Unfortunately, DPTI doesn't provide an email address to send these reports to, so we ask that you print the report and send it by mail to:
   
   <p class="dpti-address">
   Department for Infrastructure and Transport<br>
@@ -43,7 +43,7 @@ subquestion: |
   Adelaide SA 5001
   </p>
 
-  Thankyou for using the Paws Rights app, we hope that with your help in sending these reports (and gathering statistics) we can push for change!
+  Thankyou for using the Paws Rights app, we hope that sending these reports will help towards a push for change!
   
   <div class="end-image"><img src="${ YellowCircleLogo.url_for() }" width="150" height="150"></div>
   

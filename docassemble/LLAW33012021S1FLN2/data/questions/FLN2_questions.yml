@@ -23,7 +23,7 @@ fields:
 ---
 question: |
   % if FLNself_reporting:
-  What is your contact number?
+  What is your phone number?
   % else:
   Please enter the phone number of the person who was refused access.
   % endif
@@ -47,16 +47,16 @@ field: transport_type
 buttons:
   - "UBER": "Uber"
     image: uber_image
-  - "OLA": "Ola"
-    image: ola_image
   - "TAXI": "Taxi"
     image: taxi_image
-  - "DIDI": "DiDi"
-    image: didi_image
   - "BUS": "Bus"
     image: bus_image
   - "TRAIN": "Train"
     image: train_image
+  - "DIDI": "DiDi"
+    image: didi_image
+  - "OLA": "Ola"
+    image: ola_image  
   - "TRAM": "Tram"
     image: tram_image
   - "OTHER": "Other"

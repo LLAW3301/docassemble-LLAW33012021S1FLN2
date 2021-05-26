@@ -14,7 +14,7 @@ buttons:
   - Other: "Other relationship to person refused"
 script: |
   <script>
-    $(".da-field-buttons").addClass("multicolor-buttons");
+    $(".da-field-buttons").addClass("person-reporting-buttons");
   </script>
 ---
 code: |

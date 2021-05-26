@@ -107,7 +107,7 @@ buttons:
   - "Driver just drove off": Driver just drove off
 script: |
   <script>
-    $(".da-field-buttons").addClass("yes-no-buttons");
+    $(".da-field-buttons").addClass("multicolor-buttons");
   </script>
 ---
 question: |

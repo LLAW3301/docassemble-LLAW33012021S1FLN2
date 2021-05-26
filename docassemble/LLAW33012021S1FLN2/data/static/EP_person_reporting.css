@@ -1,8 +1,8 @@
 fieldset.person-reporting-buttons div button {
-  background-color: #123456 !important; /*#E0782C*/
-  border-color: #EF8817 !important;
+  background-color: #3305A7 !important; /*#E0782C*/
+  border-color: #3305A7 !important;
 }
 fieldset.person-reporting-buttons div button:hover {
-  background-color: #C46827 !important; /* #5a6268 */
-  border-color: #C46827 !important;
+  background-color: #1C0359 !important; /* #5a6268 */
+  border-color: #1C0359 !important;
 }

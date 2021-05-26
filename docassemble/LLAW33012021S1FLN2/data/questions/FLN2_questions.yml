@@ -104,6 +104,7 @@ field: FLNrefusal_reason
 buttons:
   - "Yes": Yes
   - "No": No
+  - "Driver just drove off": Driver just drove off
 script: |
   <script>
     $(".da-field-buttons").addClass("yes-no-buttons");

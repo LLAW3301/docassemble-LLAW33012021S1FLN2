@@ -5,60 +5,6 @@ modules:
 features:
   css: progressivedisclosure.css
 ---
-only sets: incident_info
-template: incident_info
-subject: |
-  Further incident information
-content: |
-  <div class="table-responsive">
-    <table class="table table-striped review-table">
-      <thead>
-        <tr>
-          <th>Questions</th>
-          <th>Answers</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Transport type</td>
-          <td>${sanitise(transport_type)}</td>
-        </tr>
-        <tr>
-          <td>Refusal date</td>
-          <td>${FLNdate}</td>
-        </tr>
-        <tr>
-          <td>Refusal time</td>
-          <td>${FLNrefusal_time}</td>
-        </tr>
-        <tr>
-          <td>Refusal postcode</td>
-          <td>${sanitise(FLNrefusal_postcode)}</td>
-        </tr>
-        <tr>
-          <td>Did refuser state why?</td>
-          <td>${FLNrefusal_reason}</td>
-        </tr>
-        <tr>
-          <td>Refusal reason</td>
-          <td>${sanitise(driver_statement)}</td>
-        </tr>
-        <tr>
-          <td>Was animal ID requested?</td>
-          <td>${refuser_asked_animal_id}</td>
-        </tr>
-        <tr>
-          <td>Was animal ID shown?</td>
-          <td>${user_show_id}</td>
-        </tr>
-        <tr>
-          <td>Is evidence attached?</td>
-          <td>${attach_evidence}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
----
 # This runs each time the user clicks the continue button ('Generate Report')
 # on this screen. Without the weird logic here, code tends to get run multiple
 # times. The idea here is that this screen will be displayed only when
@@ -147,18 +93,100 @@ subquestion: |
   
   And optionally that the rest of the incident information is correct:
   
-  ${ prog_disclose(incident_info) }
+  <!-- This is based on
+       https://docassemble.org/docs/recipes.html#progressive%20disclosure
+       but without any use of templates or a python module, as
+       templates don't let you use inline fields (i.e. the way
+       transport_type is displayed, for example) -->
+  <a class="collapsed" data-toggle="collapse" href="#incident-info" role="button" aria-expanded="false" aria-controls="collapseExample">
+    <span class="pdcaretopen">
+      <i class="fas fa-caret-down"></i>
+    </span>
+    <span class="pdcaretclosed">
+      <i class="fas fa-caret-right"></i>
+    </span>
+    Further incident information
+  </a>
+  <div class="collapse" id="incident-info">
+    <div class="card card-body bg-light pb-1">
+      <div class="table-responsive">
+        <table class="table table-striped review-table table-bordered">
+          <thead>
+            <tr>
+              <th>Questions</th>
+              <th>Answers</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Transport type</td>
+              <td>
+                <span class="full-width-field">[FIELD transport_type]</span>
+              </td>
+            </tr>
+            <tr>
+              <td>Refusal date</td>
+              <td>
+                <span class="full-width-field">[FIELD FLNdate]</span>
+              </td>
+            </tr>
+            <tr>
+              <td>Refusal time</td>
+              <td>
+                <span class="full-width-field">[FIELD FLNrefusal_time]</span>
+              </td>
+            </tr>
+            <tr>
+              <td>Refusal postcode</td>
+              <td>
+                <span class="full-width-field">[FIELD FLNrefusal_postcode]</span>
+              </td>
+            </tr>
+            <tr>
+              <td>Did refuser state why?</td>
+              <td>${FLNrefusal_reason}</td>
+            </tr>
+            <tr>
+              <td>Refusal reason</td>
+  %if FLNrefusal_reason == "Yes":
+              <td>
+                <span class="full-width-field">[FIELD driver_statement]</span>
+              </td>
+  %else:
+              <td>${sanitise(driver_statement)}</td>
+  %endif
+            </tr>
+            <tr>
+              <td>Was animal ID requested?</td>
+              <td>${refuser_asked_animal_id}</td>
+            </tr>
+            <tr>
+              <td>Was animal ID shown?</td>
+              <td>${user_show_id}</td>
+            </tr>
+            <tr>
+              <td>Is evidence attached?</td>
+              <td>${attach_evidence}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
   
   <div class="d-none">
-  <!-- Include all fields here, to ensure none will be
-  displayed in the default fields list. "d-none" is a
-  built-in bootstrap class that hides this section -->
+  <!-- Include any possibly-excluded fields here, but only when they're
+  excluded. This is to avoid having them display in the normal fields list.
+  If we include them twice in the page, however, then edits to the first
+  copy will be ignored. Note "d-none" is a built-in bootstrap class that
+  hides this section -->
+  %if FLNself_reporting:
   [FIELD FLNreporter_firstname]
   [FIELD FLNreporter_lastname]
-  [FIELD FLNrefused_firstname]
-  [FIELD FLNrefused_lastname]
-  [FIELD user_email]
-  [FIELD FLNphone]
+  %endif
+  %if not FLNrefusal_reason == "Yes":
+  [FIELD driver_statement]
+  %endif
   </div>
 continue button field: FLNgenerate_report_button_clicked
 continue button label: Generate Report
@@ -174,4 +202,16 @@ fields:
  - Email: user_email
    datatype: email
  - Phone: FLNphone
+   datatype: raw
+ - Transport type: transport_type
+   datatype: raw
+ - Refusal date: FLNdate
+   datatype: date
+ - Refusal time: FLNrefusal_time
+   datatype: time
+   default: |
+     ${ as_datetime(FLNrefusal_time.strftime('%H:%M:00')).time() }
+ - Refusal postcode: FLNrefusal_postcode
+   datatype: raw
+ - Refusal reason: driver_statement
    datatype: raw

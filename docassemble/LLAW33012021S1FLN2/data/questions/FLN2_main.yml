@@ -6,6 +6,7 @@ include:
   - AP_location.yml
   - EP_person_reporting.yml
   - AP_review.yml
+  - SM_name.yml
 ---
 modules:
   - .sanitise
@@ -60,17 +61,10 @@ script: |
 mandatory: True
 code: |
   FLNperson_reporting
-  FLNuser_firstname
-  FLNuser_lastname
-  
-  FLNreporter_firstname = FLNuser_firstname
-  FLNreporter_lastname = FLNuser_lastname
-  if FLNself_reporting:
-    FLNrefused_firstname = FLNuser_firstname
-    FLNrefused_lastname = FLNuser_lastname
-  else:
-    FLNrefused_firstname
-    FLNrefused_lastname
+  FLNreporter_firstname
+  FLNreporter_lastname
+  FLNrefused_firstname
+  FLNrefused_lastname
   
   FLNphone
   user_email

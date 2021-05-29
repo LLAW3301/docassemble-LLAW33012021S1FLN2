@@ -1,24 +1,63 @@
 modules:
   - .progressivedisclosure
+  - .sanitise
 ---
 features:
   css: progressivedisclosure.css
 ---
+only sets: incident_info
 template: incident_info
 subject: |
   Further incident information
 content: |
-  Questions| Answers
-  ------------------------|----------
-  Transport type          |${sanitise(transport_type)}
-  Refusal date            |${FLNdate}
-  Refusal time            |${FLNrefusal_time}
-  Refusal postcode        |${sanitise(FLNrefusal_postcode)}
-  Did refuser state why?  |${FLNrefusal_reason}
-  Refusal reason          |${sanitise(driver_statement)}
-  Was animal ID requested?|${refuser_asked_animal_id}
-  Was animal ID shown?    |${user_show_id}
-  Is evidence attached?   |${attach_evidence}
+  <div class="table-responsive">
+    <table class="table table-striped review-table">
+      <thead>
+        <tr>
+          <th>Questions</th>
+          <th>Answers</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Transport type</td>
+          <td>${sanitise(transport_type)}</td>
+        </tr>
+        <tr>
+          <td>Refusal date</td>
+          <td>${FLNdate}</td>
+        </tr>
+        <tr>
+          <td>Refusal time</td>
+          <td>${FLNrefusal_time}</td>
+        </tr>
+        <tr>
+          <td>Refusal postcode</td>
+          <td>${sanitise(FLNrefusal_postcode)}</td>
+        </tr>
+        <tr>
+          <td>Did refuser state why?</td>
+          <td>${FLNrefusal_reason}</td>
+        </tr>
+        <tr>
+          <td>Refusal reason</td>
+          <td>${sanitise(driver_statement)}</td>
+        </tr>
+        <tr>
+          <td>Was animal ID requested?</td>
+          <td>${refuser_asked_animal_id}</td>
+        </tr>
+        <tr>
+          <td>Was animal ID shown?</td>
+          <td>${user_show_id}</td>
+        </tr>
+        <tr>
+          <td>Is evidence attached?</td>
+          <td>${attach_evidence}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 ---
 # This runs each time the user clicks the continue button ('Generate Report')
 # on this screen. Without the weird logic here, code tends to get run multiple
@@ -53,20 +92,86 @@ code: |
     
     FLNreview_complete = True
 ---
+# This is marked as only setting FLNreview_complete, so that docassemble
+# doesn't run this question when trying to find a value for e.g. user_email
+only sets: FLNgenerate_report_button_clicked
 question: |
   Review your details.
 subquestion: |
   Please check that these personal details are correct:
   
-  Questions|Answers
-  -----------------------------|----------
-  Name of person reporting     |${sanitise(FLNreporter_firstname)} ${sanitise(FLNreporter_lastname)}
-  Refused person's name        |${sanitise(FLNrefused_firstname)} ${sanitise(FLNrefused_lastname)}
-  Refused person's e-mail      |${sanitise(user_email)}
-  Refused person's phone number|${sanitise(FLNphone)}
+  <div class="table-responsive">
+    <table class="table table-striped review-table table-bordered">
+      <thead>
+        <tr>
+          <th>Questions</th>
+          <th>Answers</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Reporting on your own behalf?</td>
+          <td>${'Yes' if FLNself_reporting else 'No'}</td>
+        </tr>
+  % if not FLNself_reporting:
+        <tr>
+          <td>Name of person reporting</td>
+          <td>
+            <span class="full-width-field">[FIELD FLNreporter_firstname]</span>
+            <span class="full-width-field">[FIELD FLNreporter_lastname]</span>
+          </td>
+        </tr>
+  % endif
+        <tr>
+          <td>Refused person's name</td>
+          <td>
+            <span class="full-width-field">[FIELD FLNrefused_firstname]</span>
+            <span class="full-width-field">[FIELD FLNrefused_lastname]</span>
+          </td>
+        </tr>
+        <tr>
+          <td>Refused person's e-mail</td>
+          <td>
+            <span class="full-width-field">[FIELD user_email]</span>
+          </td>
+        </tr>
+        <tr>
+          <td>Refused person's phone number</td>
+          <td>
+            <span class="full-width-field">[FIELD FLNphone]</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   
   And optionally that the rest of the incident information is correct:
   
   ${ prog_disclose(incident_info) }
+  
+  <div class="d-none">
+  <!-- Include all fields here, to ensure none will be
+  displayed in the default fields list. "d-none" is a
+  built-in bootstrap class that hides this section -->
+  [FIELD FLNreporter_firstname]
+  [FIELD FLNreporter_lastname]
+  [FIELD FLNrefused_firstname]
+  [FIELD FLNrefused_lastname]
+  [FIELD user_email]
+  [FIELD FLNphone]
+  </div>
 continue button field: FLNgenerate_report_button_clicked
 continue button label: Generate Report
+fields:
+ - Reporter first name: FLNreporter_firstname
+   datatype: raw
+ - Reporter last name: FLNreporter_lastname
+   datatype: raw
+ - Refused first name: FLNrefused_firstname
+   datatype: raw
+ - Refused last name: FLNrefused_lastname
+   datatype: raw
+ - Email: user_email
+   datatype: email
+ - Phone: FLNphone
+   datatype: raw

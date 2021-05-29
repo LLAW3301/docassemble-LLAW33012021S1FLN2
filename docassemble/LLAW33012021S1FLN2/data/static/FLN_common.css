@@ -175,3 +175,25 @@ fieldset.multicolor-buttons div button:nth-of-type(6n+5):hover {
   background-color: rgb(255,100,255) !important;
   border-color: #FF0000 !important;
 }
+
+.full-width-field, .full-width-field .dainput-embedded, .half-width-field .dainput-embedded {
+  display: inline;
+  position: relative;
+  width: 100% !important;
+}
+.half-width-field {
+  display: inline;
+  position: relative;
+  width: 50%;
+}
+
+.review-table td {
+  vertical-align: middle;
+}
+.review-table thead {
+  font-weight: 400;
+}
+
+#incidentinfo {
+  margin-bottom: 1em;
+}

@@ -7,7 +7,7 @@ include:
 ---
 attachment:
   name: Transport Refusal Report
-  filename: Transport-Refusal-Report-${ today().strftime('%Y-%m-%d') }
+  filename: Transport-Refusal-Report--${ today().strftime('%Y-%m-%d') }--${ current_datetime().strftime('%H-%M-%S') }
   variable name: FLNreport_file
   docx template file: Jinja.docx
   valid formats:

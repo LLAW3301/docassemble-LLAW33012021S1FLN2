@@ -108,7 +108,7 @@ subquestion: |
     </table>
   </div>
   
-  And optionally that the rest of the incident information is correct:
+  And optionally check that the rest of the incident information is correct:
   
   <!-- This is based on
        https://docassemble.org/docs/recipes.html#progressive%20disclosure
@@ -160,7 +160,7 @@ subquestion: |
               </td>
             </tr>
             <tr>
-              <td>Did refuser state why?</td>
+              <td>Did driver state why?</td>
               <td>${FLNrefusal_reason}</td>
             </tr>
             <tr>

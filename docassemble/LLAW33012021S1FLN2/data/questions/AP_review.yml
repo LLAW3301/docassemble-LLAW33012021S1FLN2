@@ -16,7 +16,7 @@ code: |
   #undefine('FLNrefusal_time')
 ---
 code: |
-  FLNupdate_refusal_time()
+  #FLNupdate_refusal_time()
   report_email_sent_ok = send_email(
     to=user_email,
     template=FLNreport_email_template,
@@ -24,7 +24,7 @@ code: |
   )
 ---
 code: |
-  FLNupdate_refusal_time()
+  #FLNupdate_refusal_time()
   stats_email_sent_ok = send_email(
     to=FLNstats_email_recipient,
     template=FLNstats_email_template
@@ -47,7 +47,7 @@ code: |
   #FLNrefusal_time_copy
   
   if (FLNgenerate_report_button_clicked):
-    FLNupdate_refusal_time()
+    #FLNrefusal_time
   
     FLNstats_email_recipient
     FLNstats_email_template
@@ -156,7 +156,7 @@ subquestion: |
             <tr>
               <td>Refusal time</td>
               <td>
-                <span class="full-width-field">[FIELD FLNrefusal_time_input]</span>
+                <span class="full-width-field">[FIELD FLNrefusal_time]</span>
               </td>
             </tr>
             <tr>
@@ -230,11 +230,24 @@ fields:
     datatype: raw
   - Refusal date: FLNdate
     datatype: date
-  - Time: FLNrefusal_time_input
+  - Time: FLNrefusal_time
     datatype: time
-    default: |
-      ${ as_datetime(FLNget_refusal_time().strftime('%H:%M:00')).time() }
+  - Time hidden: FLNrefusal_time_copy
+    required: False
+    datatype: raw
   - Refusal postcode: FLNrefusal_postcode
     datatype: raw
   - Refusal reason: driver_statement
     datatype: raw
+script: |
+  <script>
+    var saved_refusal_time = val("FLNrefusal_time_copy");
+    if (saved_refusal_time !== "") {
+      setField("FLNrefusal_time", saved_refusal_time);
+    } else {
+      setField(
+        "FLNrefusal_time",
+        ${ json.dumps(current_datetime().strftime('%H:%M:00')) }
+      );
+    }
+  </script>

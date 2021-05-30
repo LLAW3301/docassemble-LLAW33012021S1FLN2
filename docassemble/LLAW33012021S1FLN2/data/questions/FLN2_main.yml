@@ -78,7 +78,7 @@ code: |
     other_details = "N/A"
   
   FLNdate
-  FLNget_refusal_time()
+  FLNrefusal_time_copy = FLNrefusal_time.strftime('%H:%M:00')
   FLNrefusal_postcode
   FLNrefusal_reason
   

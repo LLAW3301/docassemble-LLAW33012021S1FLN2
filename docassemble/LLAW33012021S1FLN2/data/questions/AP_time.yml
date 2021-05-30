@@ -19,58 +19,226 @@
 # this quesiton unnecessarily (or get stuck in a loop asking it
 # over and over).
 ---
-code: |
-  def FLNupdate_refusal_time():
-    #if (defined('FLNrefusal_time')):
-    #  if (defined('FLNrefusal_time_input')):
-    #    FLNrefusal_time = FLNrefusal_time_input
-    #    undefine('FLNrefusal_time_input')
-    #    return FLNrefusal_time
-    #  else:
-    #    return FLNrefusal_time
-    #else:
-    #  FLNrefusal_time_input
-    #  FLNrefusal_time = FLNrefusal_time_input
-    #  return FLNrefusal_time
-  
-    #if (not defined('FLNrefusal_time')):
-    #  FLNrefusal_time_input
-    #  FLNrefusal_time = FLNrefusal_time_input
-    #  undefine('FLNrefusal_time_input')
-    
-    if (defined('FLNrefusal_time_input') or not defined('FLNrefusal_time')):
-      # # set_status assigns a global variable that won't be cleared when the
-      # # user presses back etc.
-      # set_status(FLNrefusal_time=FLNrefusal_time_input)
-      global FLNrefusal_time
-      FLNrefusal_time = FLNrefusal_time_input
-      undefine('FLNrefusal_time_input')
+# code: |
+#   def FLNupdate_refusal_time():
+#     #if (defined('FLNrefusal_time')):
+#     #  if (defined('FLNrefusal_time_input')):
+#     #    FLNrefusal_time = FLNrefusal_time_input
+#     #    undefine('FLNrefusal_time_input')
+#     #    return FLNrefusal_time
+#     #  else:
+#     #    return FLNrefusal_time
+#     #else:
+#     #  FLNrefusal_time_input
+#     #  FLNrefusal_time = FLNrefusal_time_input
+#     #  return FLNrefusal_time
+#   
+#     #if (not defined('FLNrefusal_time')):
+#     #  FLNrefusal_time_input
+#     #  FLNrefusal_time = FLNrefusal_time_input
+#     #  undefine('FLNrefusal_time_input')
+#     
+#     if (defined('FLNrefusal_time_input') or not defined('FLNrefusal_time')):
+#       # # set_status assigns a global variable that won't be cleared when the
+#       # # user presses back etc.
+#       # set_status(FLNrefusal_time=FLNrefusal_time_input)
+#       global FLNrefusal_time
+#       FLNrefusal_time = FLNrefusal_time_input
+#       undefine('FLNrefusal_time_input')
 ---
-code: |
-  def FLNget_refusal_time():
-    FLNupdate_refusal_time()
-    # return get_status('FLNrefusal_time')
-    return FLNrefusal_time
+# code: |
+#   def FLNget_refusal_time():
+#     FLNupdate_refusal_time()
+#     # return get_status('FLNrefusal_time')
+#     return FLNrefusal_time
 ---
-#only sets:
-#  - FLNrefusal_time_input
-#code: |
-#  if(defined('FLNrefusal_time')):
-#    FLNrefusal_time_input = FLNrefusal_time
+# only sets:
+#   - FLNrefusal_time_input
+# code: |
+#   if(defined('FLNrefusal_time')):
+#     FLNrefusal_time_input = FLNrefusal_time
+---
+# only sets:
+#   - FLNrefusal_time
+# code: |
+#   # When docassemble needs a value for FLNrefusal_time, it will
+#   # enter this block, then see that it first needs a value for
+#   # FLNrefusal_time_input. Once it has that, it'll rerun this
+#   # whole block from the beginning. As it's running things
+#   # multiple times, it'll only run the whole block *if there's
+#   # any variables it still needs defined*. To doubly make sure
+#   # that the 2nd undefine() call is run, we assign to a copy at
+#   # first, and only assign to the actual FLNrefusal_time variable
+#   # *after* calling undefine().
+#   undefine('FLNrefusal_time_input')
+#   FLNrefusal_time_copy = FLNrefusal_time_input
+#   undefine('FLNrefusal_time_input')
+#   FLNrefusal_time = FLNrefusal_time_copy
 ---
 #only sets:
 #  - FLNrefusal_time
 #code: |
-#  FLNrefusal_time = FLNrefusal_time_input
-#  undefine('FLNrefusal_time_input')
+#  log('#1', 'console')
+#  undefine('FLNrefusal_time_prev')
+#  log('#2', 'console')
+#  FLNrefusal_time_stored
+#  log('#3', 'console')
+#---
+#only sets:
+#  - FLNrefusal_time_stored
+#code: |
+#  log('#4', 'console')
+#  FLNrefusal_time_continue_clicked
+#  log('#5', 'console')
+#  FLNrefusal_time_prev = FLNrefusal_time
+#  log('#6', 'console')
+#  FLNrefusal_time_stored = True
+#  log('#7', 'console')
+---
+initial: True
+code: |
+  #set_status(FLNrefusal_time_in_progress=False)
+  #FLNrefusal_time_in_progress = {"value": False}
+---
+code: |
+  #if (not defined('FLNrefusal_time_in_progress')):
+  #  FLNrefusal_time_in_progress = False
 ---
 only sets:
-  - FLNrefusal_time_input
+  - FLNrefusal_time_complete
+code: |
+  # log('#1: ' + str(times_task_performed('task1')) + str(times_task_performed('task2')), 'console')
+  # if (times_task_performed('task1') == 0):
+  #   log('#2', 'console')
+  #   undefine('FLNrefusal_time')
+  #   log('#3', 'console')
+  # log('#4', 'console')
+  # mark_task_as_performed('task1')
+  # log('#5: ' + str(times_task_performed('task1')) + str(times_task_performed('task2')), 'console')
+  # FLNrefusal_time
+  # log('#6', 'console')
+  # FLNrefusal_time_prev = FLNrefusal_time
+  # log('#7', 'console')
+  # mark_task_as_performed('task2')
+  # log('#8: ' + str(times_task_performed('task1')) + str(times_task_performed('task2')), 'console')
+  # FLNrefusal_time_complete = True
+  # log('#9', 'console')
+
+  # #log('#1: ' + str(get_status('FLNrefusal_time_in_progress')), 'console')
+  # log('#1: ' + str(FLNrefusal_time_in_progress) + ", " + str(get_status('FLNrefusal_time_done_progress')), 'console')
+  # #if (get_status('FLNrefusal_time_in_progress') == False):
+  # if (FLNrefusal_time_in_progress == False):
+  #   log('#2', 'console')
+  #   undefine('FLNrefusal_time')
+  #   log('#3', 'console')
+  # log('#4', 'console')
+  # #set_status(FLNrefusal_time_in_progress=True)
+  # #log('#5: ' + str(get_status('FLNrefusal_time_in_progress')), 'console')
+  # FLNrefusal_time_in_progress = True
+  # log('#5: ' + str(FLNrefusal_time_in_progress) + ", " + str(get_status('FLNrefusal_time_done_progress')), 'console')
+  # FLNrefusal_time
+  # log('#6', 'console')
+  # FLNrefusal_time_prev = FLNrefusal_time
+  # log('#7', 'console')
+  # #set_status(FLNrefusal_time_in_progress=False)
+  # #log('#8: ' + str(get_status('FLNrefusal_time_in_progress')), 'console')
+  # FLNrefusal_time_in_progress = False
+  # set_status(FLNrefusal_time_done_progress=False)
+  # log('#8: ' + str(FLNrefusal_time_in_progress) + ", " + str(get_status('FLNrefusal_time_done_progress')), 'console')
+  # FLNrefusal_time_complete = True
+  # log('#9', 'console')
+  
+  #if (defined('FLNrefusal_time_in_progress')):
+  #  log('#2: ' + str(FLNrefusal_time_in_progress), 'console')
+  #  if (FLNrefusal_time_in_progress == False):
+  #    log('#3', 'console')
+  #    undefine('FLNrefusal_time')
+  #    log('#4', 'console')
+  #  log('#5', 'console')
+  #else:
+  #  log('#6', 'console')
+  #  undefine('FLNrefusal_time')
+  #  log('#7', 'console')
+  #   
+  # #if (not defined('FLNrefusal_time_in_progress') or not FLNrefusal_time_in_progress):
+  # #  log('#2', 'console')
+  # #  undefine('FLNrefusal_time')
+  # #  log('#3', 'console')
+  # 
+  # log('#8', 'console')
+  # FLNrefusal_time_in_progress = True
+  # log('#9', 'console')
+  # #FLNrefusal_time_continue_clicked
+  # FLNrefusal_time
+  # log('#10', 'console')
+  # FLNrefusal_time_prev = FLNrefusal_time
+  # log('#11', 'console')
+  # undefine('FLNrefusal_time_in_progress')
+  # log('#12', 'console')
+  # FLNrefusal_time_complete = True
+  # log('#13', 'console')
+---
+# only sets:
+#   - FLNrefusal_time
+# question: |
+#   What time did the refusal occur?
+# #continue button field: FLNrefusal_time_continue_clicked
+# fields:
+#   - Time: FLNrefusal_time
+#     datatype: time
+#     default: |
+#       ${ as_datetime((FLNrefusal_time_prev if defined('FLNrefusal_time_prev') else current_datetime()).strftime('%H:%M:00')).time() }
+# ---
+# mandatory: True
+# code: |
+#   FLNrefusal_time_complete
+#   dummy_question
+# ---
+# only sets:
+#   - dummy_question
+# question: |
+#   ASDF
+---
+only sets:
+  - FLNrefusal_time
 question: |
   What time did the refusal occur?
 fields:
-  - Time: FLNrefusal_time_input
+  - Time: FLNrefusal_time
     datatype: time
-    default: |
-      ${ as_datetime((FLNrefusal_time if defined('FLNrefusal_time') else current_datetime()).strftime('%H:%M:00')).time() }
+#    default: |
+#      ${ as_datetime((current_datetime()).strftime('%H:%M:00')).time() }
+  - Time hidden: FLNrefusal_time_copy
+    required: False
+    datatype: raw
+script: |
+  <script>
+    console.log(getField("FLNrefusal_time"));
+    console.log(val("FLNrefusal_time") === "");
+    console.log(getField("FLNrefusal_time_copy"));
+    console.log(val("FLNrefusal_time_copy") === "");
+    var saved_refusal_time = val("FLNrefusal_time_copy");
+    if (saved_refusal_time !== "") {
+      setField("FLNrefusal_time", saved_refusal_time);
+    } else {
+      setField(
+        "FLNrefusal_time",
+        ${ json.dumps(current_datetime().strftime('%H:%M:00')) }
+      );
+    }
+    
+    //var default_refusal_time = ${ json.dumps((FLNrefusal_time if defined('FLNrefusal_time') else current_datetime()).strftime('%H:%M:00')) };
+    //console.log(default_refusal_time);
+    //setField("FLNrefusal_time", default_refusal_time);
+  </script>
 ---
+# mandatory: True
+# code: |
+#   FLNrefusal_time_copy = FLNrefusal_time.strftime('%H:%M:00')
+#   dummy_question
+# ---
+# only sets:
+#   - dummy_question
+# question: |
+#   ASDF
+# ---

@@ -33,4 +33,4 @@ subject: |
   Stats for Transport Refusal | Paws Rights
 content: |
   RefusalDate, RefusalTime, RefusalPostcode, TransportType, PersonReporting, DidRefuserStateReason, DidRefuserAskForAnimalID, DidUserShowID, DidUserContinueUnlawfulReport, DidUserAttachEvidence<br>
-  ${ FLNdate.strftime('%Y-%m-%d') }, ${ FLNget_refusal_time().strftime('%H:%M:%S') }, ${ sanitise(FLNrefusal_postcode) }, ${ sanitise(transport_type) }, ${ FLNperson_reporting }, ${ FLNrefusal_reason }, ${ refuser_asked_animal_id }, ${ user_show_id }, ${ continue_unlawful_report }, ${ attach_evidence }
+  ${ FLNdate.strftime('%Y-%m-%d') }, ${ FLNrefusal_time.strftime('%H:%M:%S') }, ${ sanitise(FLNrefusal_postcode) }, ${ sanitise(transport_type) }, ${ FLNperson_reporting }, ${ FLNrefusal_reason }, ${ refuser_asked_animal_id }, ${ user_show_id }, ${ continue_unlawful_report }, ${ attach_evidence }

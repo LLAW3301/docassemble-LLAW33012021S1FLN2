@@ -16,7 +16,6 @@ code: |
   #undefine('FLNrefusal_time')
 ---
 code: |
-  #FLNupdate_refusal_time()
   report_email_sent_ok = send_email(
     to=user_email,
     template=FLNreport_email_template,
@@ -24,7 +23,6 @@ code: |
   )
 ---
 code: |
-  #FLNupdate_refusal_time()
   stats_email_sent_ok = send_email(
     to=FLNstats_email_recipient,
     template=FLNstats_email_template
@@ -44,11 +42,7 @@ code: |
 only sets:
   - FLNreview_complete
 code: |
-  #FLNrefusal_time_copy
-  
   if (FLNgenerate_report_button_clicked):
-    #FLNrefusal_time
-  
     FLNstats_email_recipient
     FLNstats_email_template
     
@@ -210,6 +204,8 @@ subquestion: |
   %if not FLNrefusal_reason == "Yes":
   [FIELD driver_statement]
   %endif
+  <!-- This one we always want hidden -->
+  [FIELD FLNrefusal_time_copy]
   </div>
 continue button field: FLNgenerate_report_button_clicked
 continue button label: Generate Report

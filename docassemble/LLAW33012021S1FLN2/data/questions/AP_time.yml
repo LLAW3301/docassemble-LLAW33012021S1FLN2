@@ -8,215 +8,146 @@
 # 
 # However, there's a second issue. If the variable the time field sets
 # is already defined, then that field will show up blank (regardless
-# of what we set as the default). To fix that, we have to ensure the
-# variable is undefined whenever the user clicks back (or accesses
-# the corresponding field in the review screen).
-#
-# TODO: Update this:
-# The second code block does that, making a copy and undefining
-# the original.
-# The first code block acts as a guard to make sure we don't ask
-# this quesiton unnecessarily (or get stuck in a loop asking it
-# over and over).
----
+# of what we set as the default).
+# 
+# --------------------------- ATTEMPTS TO FIX THIS ---------------------------
+# 
+# To fix that, we would have to ensure the variable is undefined whenever the
+# user clicks back (or accesses the corresponding field in the review screen).
+# 
+# However, any code we use to undefine the variable before access to
+# the field will be rerun once the field has been set (at least in
+# all my attempts). This is a problem if we had the following code,
+# for example:
 # code: |
-#   def FLNupdate_refusal_time():
-#     #if (defined('FLNrefusal_time')):
-#     #  if (defined('FLNrefusal_time_input')):
-#     #    FLNrefusal_time = FLNrefusal_time_input
-#     #    undefine('FLNrefusal_time_input')
-#     #    return FLNrefusal_time
-#     #  else:
-#     #    return FLNrefusal_time
-#     #else:
-#     #  FLNrefusal_time_input
-#     #  FLNrefusal_time = FLNrefusal_time_input
-#     #  return FLNrefusal_time
-#   
-#     #if (not defined('FLNrefusal_time')):
-#     #  FLNrefusal_time_input
-#     #  FLNrefusal_time = FLNrefusal_time_input
-#     #  undefine('FLNrefusal_time_input')
-#     
-#     if (defined('FLNrefusal_time_input') or not defined('FLNrefusal_time')):
-#       # # set_status assigns a global variable that won't be cleared when the
-#       # # user presses back etc.
-#       # set_status(FLNrefusal_time=FLNrefusal_time_input)
-#       global FLNrefusal_time
-#       FLNrefusal_time = FLNrefusal_time_input
-#       undefine('FLNrefusal_time_input')
----
-# code: |
-#   def FLNget_refusal_time():
-#     FLNupdate_refusal_time()
-#     # return get_status('FLNrefusal_time')
-#     return FLNrefusal_time
----
-# only sets:
-#   - FLNrefusal_time_input
-# code: |
-#   if(defined('FLNrefusal_time')):
-#     FLNrefusal_time_input = FLNrefusal_time
----
-# only sets:
-#   - FLNrefusal_time
-# code: |
-#   # When docassemble needs a value for FLNrefusal_time, it will
-#   # enter this block, then see that it first needs a value for
-#   # FLNrefusal_time_input. Once it has that, it'll rerun this
-#   # whole block from the beginning. As it's running things
-#   # multiple times, it'll only run the whole block *if there's
-#   # any variables it still needs defined*. To doubly make sure
-#   # that the 2nd undefine() call is run, we assign to a copy at
-#   # first, and only assign to the actual FLNrefusal_time variable
-#   # *after* calling undefine().
-#   undefine('FLNrefusal_time_input')
-#   FLNrefusal_time_copy = FLNrefusal_time_input
-#   undefine('FLNrefusal_time_input')
-#   FLNrefusal_time = FLNrefusal_time_copy
----
-#only sets:
-#  - FLNrefusal_time
-#code: |
-#  log('#1', 'console')
-#  undefine('FLNrefusal_time_prev')
-#  log('#2', 'console')
-#  FLNrefusal_time_stored
-#  log('#3', 'console')
-#---
-#only sets:
-#  - FLNrefusal_time_stored
-#code: |
-#  log('#4', 'console')
-#  FLNrefusal_time_continue_clicked
-#  log('#5', 'console')
-#  FLNrefusal_time_prev = FLNrefusal_time
-#  log('#6', 'console')
-#  FLNrefusal_time_stored = True
-#  log('#7', 'console')
----
-initial: True
-code: |
-  #set_status(FLNrefusal_time_in_progress=False)
-  #FLNrefusal_time_in_progress = {"value": False}
----
-code: |
-  #if (not defined('FLNrefusal_time_in_progress')):
-  #  FLNrefusal_time_in_progress = False
----
-only sets:
-  - FLNrefusal_time_complete
-code: |
-  # log('#1: ' + str(times_task_performed('task1')) + str(times_task_performed('task2')), 'console')
-  # if (times_task_performed('task1') == 0):
-  #   log('#2', 'console')
-  #   undefine('FLNrefusal_time')
-  #   log('#3', 'console')
-  # log('#4', 'console')
-  # mark_task_as_performed('task1')
-  # log('#5: ' + str(times_task_performed('task1')) + str(times_task_performed('task2')), 'console')
-  # FLNrefusal_time
-  # log('#6', 'console')
-  # FLNrefusal_time_prev = FLNrefusal_time
-  # log('#7', 'console')
-  # mark_task_as_performed('task2')
-  # log('#8: ' + str(times_task_performed('task1')) + str(times_task_performed('task2')), 'console')
-  # FLNrefusal_time_complete = True
-  # log('#9', 'console')
-
-  # #log('#1: ' + str(get_status('FLNrefusal_time_in_progress')), 'console')
-  # log('#1: ' + str(FLNrefusal_time_in_progress) + ", " + str(get_status('FLNrefusal_time_done_progress')), 'console')
-  # #if (get_status('FLNrefusal_time_in_progress') == False):
-  # if (FLNrefusal_time_in_progress == False):
-  #   log('#2', 'console')
-  #   undefine('FLNrefusal_time')
-  #   log('#3', 'console')
-  # log('#4', 'console')
-  # #set_status(FLNrefusal_time_in_progress=True)
-  # #log('#5: ' + str(get_status('FLNrefusal_time_in_progress')), 'console')
-  # FLNrefusal_time_in_progress = True
-  # log('#5: ' + str(FLNrefusal_time_in_progress) + ", " + str(get_status('FLNrefusal_time_done_progress')), 'console')
-  # FLNrefusal_time
-  # log('#6', 'console')
-  # FLNrefusal_time_prev = FLNrefusal_time
-  # log('#7', 'console')
-  # #set_status(FLNrefusal_time_in_progress=False)
-  # #log('#8: ' + str(get_status('FLNrefusal_time_in_progress')), 'console')
-  # FLNrefusal_time_in_progress = False
-  # set_status(FLNrefusal_time_done_progress=False)
-  # log('#8: ' + str(FLNrefusal_time_in_progress) + ", " + str(get_status('FLNrefusal_time_done_progress')), 'console')
-  # FLNrefusal_time_complete = True
-  # log('#9', 'console')
-  
-  #if (defined('FLNrefusal_time_in_progress')):
-  #  log('#2: ' + str(FLNrefusal_time_in_progress), 'console')
-  #  if (FLNrefusal_time_in_progress == False):
-  #    log('#3', 'console')
-  #    undefine('FLNrefusal_time')
-  #    log('#4', 'console')
-  #  log('#5', 'console')
-  #else:
-  #  log('#6', 'console')
-  #  undefine('FLNrefusal_time')
-  #  log('#7', 'console')
-  #   
-  # #if (not defined('FLNrefusal_time_in_progress') or not FLNrefusal_time_in_progress):
-  # #  log('#2', 'console')
-  # #  undefine('FLNrefusal_time')
-  # #  log('#3', 'console')
-  # 
-  # log('#8', 'console')
-  # FLNrefusal_time_in_progress = True
-  # log('#9', 'console')
-  # #FLNrefusal_time_continue_clicked
-  # FLNrefusal_time
-  # log('#10', 'console')
-  # FLNrefusal_time_prev = FLNrefusal_time
-  # log('#11', 'console')
-  # undefine('FLNrefusal_time_in_progress')
-  # log('#12', 'console')
-  # FLNrefusal_time_complete = True
-  # log('#13', 'console')
----
-# only sets:
-#   - FLNrefusal_time
-# question: |
-#   What time did the refusal occur?
-# #continue button field: FLNrefusal_time_continue_clicked
-# fields:
-#   - Time: FLNrefusal_time
-#     datatype: time
-#     default: |
-#       ${ as_datetime((FLNrefusal_time_prev if defined('FLNrefusal_time_prev') else current_datetime()).strftime('%H:%M:00')).time() }
-# ---
-# mandatory: True
-# code: |
+#   ... main interview logic ...
 #   FLNrefusal_time_complete
-#   dummy_question
+#   ... main interview logic ...
 # ---
-# only sets:
-#   - dummy_question
-# question: |
-#   ASDF
+# only sets: FLNrefusal_time_complete
+# code: |
+#   undefine('FLNrefusal_time')
+#   FLNrefusal_time
+#   FLNrefusal_time_prev = FLNrefusal_time
+#   FLNrefusal_time_complete
+# And then the question's default value checks if FLNrefusal_time_prev
+# is defined, and uses that value if it is (otherwise it uses the current
+# time).
+# 
+# This comes close to working, as the use of FLNrefusal_time_complete
+# forces the whole block to be run with no oppotunity for docassemble
+# to just say "oh well, looks like we've got all the variables we need,
+# guess we can stop here". However, when docassemble needs to retrive the
+# value for FLNrefusal_time (just after undefining it), it'll jump
+# over to the question where the user can enter it. Once done, it'll
+# re-run *that whole code block that it was in*, and so it'll undefine
+# FLNrefusal_time once again...and get stuck in an infinite loop, asking
+# the same question over and over.
+# 
+# We could try to fix this by adding a flag that we're currently in
+# progress, i.e:
+# ---
+# code: |
+#   # default value for when it hasn't been set yet:
+#   if (not defined('FLNrefusal_time_in_progress'):
+#     FLNrefusal_time_in_progress = False
+# ---
+# only sets: FLNrefusal_time_complete
+# code: |
+#   if (not FLNrefusal_time_in_progress):
+#     undefine('FLNrefusal_time')
+#   FLNrefusal_time_in_progress = True
+#   FLNrefusal_time
+#   FLNrefusal_time_prev = FLNrefusal_time
+#   FLNrefusal_time_in_progress = False
+#   FLNrefusal_time_complete
+# 
+# This works fine, until the user presses back. Then, all python variables
+# are reset to their previous state -- but apparently not to the original
+# state where FLNrefusal_time_in_progress is false. No. That'd be too simple.
+# Instead, it's reset to the value it took on *after* the first partial run
+# through of the code block. All changes in subsequent re-runs are undone
+# when the user presses back.
+# 
+# So what happens is docassemble begins by checking the flag, finds it's
+# false, and undefines FLNrefusal_time. All good. Then it sets the flag
+# to true, and reaches the point where it needs a value for FLNrefusal_time.
+# It then displays the question to the user. Once the user answers, the code
+# block begins running again from the start - i.e. run 2. The flag is true,
+# so the FLNrefusal_time doesn't get undefined. All good. The code runs to
+# the end, sets the flag to false, and moves onto the next screen. All good.
+# 
+# Then, the user presses back. Every change to FLNrefusal_time_in_progress
+# that occurred in run 2 is deleted, while every change that occured in
+# run 1 is kept. The flag is therefore left as true. So FLNrefusal_time
+# doesn't get undefined, when we wanted it to be. The time input field
+# therefore shows up with a blank value, as it's variable is already
+# defined.
+# 
+# Docassemble provides some mechanisms that sound like they're meant to be
+# more persistent in storing data, i.e. they don't get undone by pressing
+# back. These are set_status()/get_status(), and tasks, i.e.
+# times_task_performed()/set_task_counter()/etc.
+# These might persist changes made in run 1 more correctly (I'm not sure
+# why run 1 was ever persisted using python variables to be honest),
+# but it looks like changes made in run 2 get deleted regardless when
+# the user presses back. So they're also no good.
+# 
+# We could store stuff in javascript variables, but interviews can persist
+# across page refreshes, so that won't work too well. The only way I can
+# think to store a persistent variable would be to use Docassemble's
+# Redis or SQL servers, or some other external system. Those aren't
+# exactly nice given that I have no clue whether the Uni's Docassemble
+# server is running either of those.
+# 
+# Other approaches were also attempted, where the question would set an
+# 'FLNrefusal_time_input' field, and then this field would be copied
+# to FLNrefusal_time before being immediately set as undefined. These
+# approaches also only provided a partial solution, and didn't work well
+# with the user pressing back.
+# 
+# -------------------------------- THE FIX -------------------------------- 
+# 
+# Instead, there's a different hack we can use.
+# We create a second field entirely, which is just raw text, not a date.
+# That means docassemble is able to fill it in correctly automatically
+# when the user presses back.
+# We make that field be a copy of FLNrefusal_time. I expected that we'd
+# need to make sure to copy this in lots of different places, but it turns
+# out that just writing the following once in the relevant place in the main
+# interview logic is enough:
+#   FLNrefusal_time_copy = FLNrefusal_time.strftime('%H:%M:00')"
+# I'm guessing it's enough because docassemble reruns the whole thing lots,
+# and so it gets copied across lots, covering all the times where it's
+# actually necessary.
+# 
+# Then, we use some javascript to read the value of this second field,
+# and write it into the value of the first field. Miraculously, this works
+# and actually shows up in the time input field. Of course if the second field is
+# empty, we set the first field to the current time. The javascript is shown
+# at the end of this file (and also duplicated in the review screen).
+# 
+# Finally, we make the second field optional, and then make use of the
+# square-bracketed FIELD syntax to move it to be inside the html,
+# where we can stick it in a hidden.
 ---
 only sets:
   - FLNrefusal_time
 question: |
   What time did the refusal occur?
+subquestion: |
+  <div class="d-none">
+  <!-- This section is hidden by using d-none, a built-in bootstrap class -->
+  [FIELD FLNrefusal_time_copy]
+  </div>
 fields:
   - Time: FLNrefusal_time
     datatype: time
-#    default: |
-#      ${ as_datetime((current_datetime()).strftime('%H:%M:00')).time() }
   - Time hidden: FLNrefusal_time_copy
     required: False
     datatype: raw
 script: |
   <script>
-    console.log(getField("FLNrefusal_time"));
-    console.log(val("FLNrefusal_time") === "");
-    console.log(getField("FLNrefusal_time_copy"));
-    console.log(val("FLNrefusal_time_copy") === "");
     var saved_refusal_time = val("FLNrefusal_time_copy");
     if (saved_refusal_time !== "") {
       setField("FLNrefusal_time", saved_refusal_time);
@@ -226,19 +157,5 @@ script: |
         ${ json.dumps(current_datetime().strftime('%H:%M:00')) }
       );
     }
-    
-    //var default_refusal_time = ${ json.dumps((FLNrefusal_time if defined('FLNrefusal_time') else current_datetime()).strftime('%H:%M:00')) };
-    //console.log(default_refusal_time);
-    //setField("FLNrefusal_time", default_refusal_time);
   </script>
 ---
-# mandatory: True
-# code: |
-#   FLNrefusal_time_copy = FLNrefusal_time.strftime('%H:%M:00')
-#   dummy_question
-# ---
-# only sets:
-#   - dummy_question
-# question: |
-#   ASDF
-# ---

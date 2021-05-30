@@ -1,14 +1,76 @@
+# The initial version of this was based on
+# https://docassemble.org/docs/fields.html#time
+# and https://docassemble.org/docs/functions.html#date%20functions
+# 
+# For some reason current_datetime().time() doesn't work to set the default time,
+# while e.g. as_datetime('07:30 AM').time() does, so we use something based on
+# that as a workaround
+# 
+# However, there's a second issue. If the variable the time field sets
+# is already defined, then that field will show up blank (regardless
+# of what we set as the default). To fix that, we have to ensure the
+# variable is undefined whenever the user clicks back (or accesses
+# the corresponding field in the review screen).
+#
+# TODO: Update this:
+# The second code block does that, making a copy and undefining
+# the original.
+# The first code block acts as a guard to make sure we don't ask
+# this quesiton unnecessarily (or get stuck in a loop asking it
+# over and over).
 ---
+code: |
+  def FLNupdate_refusal_time():
+    #if (defined('FLNrefusal_time')):
+    #  if (defined('FLNrefusal_time_input')):
+    #    FLNrefusal_time = FLNrefusal_time_input
+    #    undefine('FLNrefusal_time_input')
+    #    return FLNrefusal_time
+    #  else:
+    #    return FLNrefusal_time
+    #else:
+    #  FLNrefusal_time_input
+    #  FLNrefusal_time = FLNrefusal_time_input
+    #  return FLNrefusal_time
+  
+    #if (not defined('FLNrefusal_time')):
+    #  FLNrefusal_time_input
+    #  FLNrefusal_time = FLNrefusal_time_input
+    #  undefine('FLNrefusal_time_input')
+    
+    if (defined('FLNrefusal_time_input') or not defined('FLNrefusal_time')):
+      # # set_status assigns a global variable that won't be cleared when the
+      # # user presses back etc.
+      # set_status(FLNrefusal_time=FLNrefusal_time_input)
+      global FLNrefusal_time
+      FLNrefusal_time = FLNrefusal_time_input
+      undefine('FLNrefusal_time_input')
+---
+code: |
+  def FLNget_refusal_time():
+    FLNupdate_refusal_time()
+    # return get_status('FLNrefusal_time')
+    return FLNrefusal_time
+---
+#only sets:
+#  - FLNrefusal_time_input
+#code: |
+#  if(defined('FLNrefusal_time')):
+#    FLNrefusal_time_input = FLNrefusal_time
+---
+#only sets:
+#  - FLNrefusal_time
+#code: |
+#  FLNrefusal_time = FLNrefusal_time_input
+#  undefine('FLNrefusal_time_input')
+---
+only sets:
+  - FLNrefusal_time_input
 question: |
   What time did the refusal occur?
 fields:
-  # Based on https://docassemble.org/docs/fields.html#time
-  # and https://docassemble.org/docs/functions.html#date%20functions
-  # For some reason current_datetime().time() doesn't work to set the default time,
-  # while e.g. as_datetime('07:30 AM').time() does, so use something based on
-  # that as a workaround
-  - Time: FLNrefusal_time
+  - Time: FLNrefusal_time_input
     datatype: time
     default: |
-      ${ as_datetime(current_datetime().strftime('%H:%M:00')).time() }
+      ${ as_datetime((FLNrefusal_time if defined('FLNrefusal_time') else current_datetime()).strftime('%H:%M:00')).time() }
 ---

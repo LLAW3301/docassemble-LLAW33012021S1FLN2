@@ -7,6 +7,7 @@ include:
   - EP_person_reporting.yml
   - AP_review.yml
   - SM_name.yml
+  - AP_time.yml
 ---
 modules:
   - .sanitise
@@ -77,7 +78,7 @@ code: |
     other_details = "N/A"
   
   FLNdate
-  FLNrefusal_time
+  FLNget_refusal_time()
   FLNrefusal_postcode
   FLNrefusal_reason
   

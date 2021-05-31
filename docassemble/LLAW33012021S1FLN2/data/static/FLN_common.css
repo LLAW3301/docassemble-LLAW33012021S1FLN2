@@ -198,19 +198,16 @@ fieldset.multicolor-buttons div button:nth-of-type(6n+5):hover {
   margin-bottom: 1em;
 }
 
-.form-actions {
-  /*
-  -ms-transform: scale(1.5, 1.5); / * IE 9 * /
-  -webkit-transform: scale(1.5, 1.5); / * Safari * /
-  transform: scale(1.5, 1.5);
-  */
+/* enlarge buttons on most screens */
+.form-actions, .large-buttons {
   font-size: 1.2em;
 }
-.btn {
+.form-actions .btn, .large-buttons .btn {
   font-size: 1em;
   padding: 0.375em 0.75em 0.375em 0.75em;
 }
 
+/* prevent buttons on selected screens from being enlarged */
 .default-size-buttons .form-actions {
   font-size: 1em;
 }

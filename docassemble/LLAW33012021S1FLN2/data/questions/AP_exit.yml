@@ -47,6 +47,6 @@ subquestion: |
   
   <div class="end-image"><img src="${ YellowCircleLogo.url_for() }" width="150" height="150"></div>
   
-  <div class="center-button-container">
+  <div class="center-button-container large-buttons">
   ${ action_button_html(url_of('restart'), label="Restart & begin a new report", color="danger", size="md") }
   </div>

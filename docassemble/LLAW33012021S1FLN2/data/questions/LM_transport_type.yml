@@ -1,11 +1,27 @@
 ---
+sets: transport_type
+code: |
+  selected_transport_type
+  if selected_transport_type == "Other":
+    other_transport_type
+    if len(other_transport_type_organisation) > 0:
+      transport_type = (
+        other_transport_type + " (" + other_transport_type_organisation + ")"
+      )
+    else:
+      transport_type = other_transport_type
+  else:
+    transport_type = selected_transport_type
+    other_transport_type = "N/A"
+    other_transport_type_organisation = ""
+---
 question: |
   % if FLNself_reporting:
   Which kind of transport were you trying to use when you were refused?
   % else:
   Which kind of transport were they trying to use when they were refused?
   % endif
-field: transport_type
+field: selected_transport_type
 buttons:
   - "UBER": "Uber"
     image: uber_image
@@ -30,11 +46,18 @@ script: |
 ---
 question: |
   % if FLNself_reporting:
-  Enter the name of the company / person that refused you service because of your assistance animal
+  Which kind of transport were you trying to use when you were refused?
   % else:
-  Enter the name of the company / person that refused service because of an assistance animal
+  Which kind of transport were they trying to use when they were refused?
   % endif
+subquestion: |
+  Please state the type of transport ${"you" if FLNself_reporting else "they"} were refused from. For example, "Horse & cart" or "Carpool ride".
+  
+  You can also write any other details about who refused ${"you." if FLNself_reporting else "them."} For example, the name of the horse & cart company, or the name of the driver.
 fields:
-  - Details: other_details
+  - Transport type: other_transport_type
+    datatype: raw
+  - Person/organisation: other_transport_type_organisation
+    required: false
     datatype: raw
 ---

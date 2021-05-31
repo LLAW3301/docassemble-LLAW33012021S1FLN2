@@ -88,13 +88,6 @@ code: |
   user_email
   transport_type
   
-  #if transport_type == "Other":
-  #  other_transport_type_kind
-  #  other_transport_type_organisation
-  #  transport_type = other_transport_type_kind + " (" + other_transport_type_organisation + ")"
-  #else:
-  #  other_details = "N/A"
-  
   FLNdate
   FLNrefusal_time_copy = FLNrefusal_time.strftime('%H:%M:00')
   FLNrefusal_postcode

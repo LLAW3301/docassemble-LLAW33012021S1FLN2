@@ -39,8 +39,6 @@ default screen parts:
 metadata:
   title: |
     Paws Rights
-  short title: |
-    Transport Refusal Reports
   description: |
     A way to report a transport refusal in SA
   authors:

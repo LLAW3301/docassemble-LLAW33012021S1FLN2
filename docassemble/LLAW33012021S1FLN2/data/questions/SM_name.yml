@@ -1,0 +1,27 @@
+---
+code: |
+  FLNreporter_firstname = FLNuser_firstname
+  FLNreporter_lastname = FLNuser_lastname
+  if FLNself_reporting:
+    FLNrefused_firstname = FLNuser_firstname
+    FLNrefused_lastname = FLNuser_lastname
+  else:
+    FLNrefused_firstname = FLNother_firstname
+    FLNrefused_lastname = FLNother_lastname
+---
+question: |
+  What is your full name?
+fields:
+  - First Name: FLNuser_firstname
+    datatype: raw
+  - Last Name: FLNuser_lastname
+    datatype: raw
+---
+question: |
+  Please enter the full name of the person who has been refused transportation.
+fields:
+  - First Name: FLNother_firstname
+    datatype: raw
+  - Last Name: FLNother_lastname
+    datatype: raw
+---

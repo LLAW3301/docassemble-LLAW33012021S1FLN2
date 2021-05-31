@@ -18,6 +18,7 @@ code: |
 code: |
   report_email_sent_ok = send_email(
     to=user_email,
+    sender=email_sender,
     template=FLNreport_email_template,
     attachments=[FLNreport_file]
   )
@@ -25,6 +26,7 @@ code: |
 code: |
   stats_email_sent_ok = send_email(
     to=FLNstats_email_recipient,
+    sender=email_sender,
     template=FLNstats_email_template
   )
 ---

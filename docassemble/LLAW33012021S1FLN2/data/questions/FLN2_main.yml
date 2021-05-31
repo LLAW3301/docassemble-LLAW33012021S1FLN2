@@ -27,6 +27,19 @@ code: |
   # For example:
   # FLNstats_email_recipient = "alex@westminstersoftware.com"
   FLNstats_email_recipient = None
+  
+  # For emails we send, this configures how the 'sent from' section will appear
+  # Note: If we change the 'email' value so that the displayed-sender-address
+  # and actual-sender-address, then some spam filters may be more likely
+  # to block out emails. As far as I know the actual-sender-address is
+  # currently "docassemble-no-reply@flinders.edu.au", so I've set that
+  # as the display address below for now.
+  email_sender = Organization(
+    name = Name(
+      text = "Paws Rights"
+    ),
+    email = "docassemble-no-reply@flinders.edu.au"
+  )
 ---
 template: disclaimer
 content: |

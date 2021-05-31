@@ -1,0 +1,40 @@
+---
+question: |
+  % if FLNself_reporting:
+  Which kind of transport were you trying to use when you were refused?
+  % else:
+  Which kind of transport were they trying to use when they were refused?
+  % endif
+field: transport_type
+buttons:
+  - "UBER": "Uber"
+    image: uber_image
+  - "TAXI": "Taxi"
+    image: taxi_image
+  - "BUS": "Bus"
+    image: bus_image
+  - "TRAIN": "Train"
+    image: train_image
+  - "DIDI": "DiDi"
+    image: didi_image
+  - "OLA": "Ola"
+    image: ola_image  
+  - "TRAM": "Tram"
+    image: tram_image
+  - "OTHER": "Other"
+    image: other_image
+script: |
+  <script>
+    $(".da-field-buttons").addClass("default-size-buttons");
+  </script>
+---
+question: |
+  % if FLNself_reporting:
+  Enter the name of the company / person that refused you service because of your assistance animal
+  % else:
+  Enter the name of the company / person that refused service because of an assistance animal
+  % endif
+fields:
+  - Details: other_details
+    datatype: raw
+---

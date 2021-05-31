@@ -8,6 +8,7 @@ include:
   - AP_review.yml
   - SM_name.yml
   - AP_time.yml
+  - LM_transport_type.yml
 ---
 modules:
   - .sanitise
@@ -72,6 +73,7 @@ buttons:
 script: |
   <script>
     $(".da-field-buttons").addClass("continue-exit-buttons");
+    $(".da-field-buttons").addClass("default-size-buttons");
   </script>
 ---
 mandatory: True

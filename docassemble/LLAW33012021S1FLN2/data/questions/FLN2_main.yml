@@ -34,6 +34,8 @@ code: |
   # to block out emails. As far as I know the actual-sender-address is
   # currently "docassemble-no-reply@flinders.edu.au", so I've set that
   # as the display address below for now.
+  # Note: The send_email() function also has "reply_to", "cc", and other
+  # parameters that we can configure if needed.
   email_sender = Organization(
     name = Name(
       text = "Paws Rights"

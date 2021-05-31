@@ -16,10 +16,37 @@ modules:
 features: 
   css: FLN_common.css
   javascript: nicebackbutton.js
+  debug: False
+  hide standard menu: True
 ---
 objects:
   - endpoints: DADict
   - LogoPR: DAStaticFile.using(filename='paws_rights_logo_yellow.png')
+---
+# Modify the post default screen part to attribute work to Flinders and our client
+default screen parts:
+  post: |
+    <div style="display: flex; height: 200px; align-items: flex-end; flex-direction: row-reverse">
+    <div style="margin: 5px"><img src="https://staff.flinders.edu.au/etc.clientlibs/flinders/clientlibs/clientlib-site/resources/images/flinderuni_main_logo_black.png" height="40">
+    </div>
+    <div style="margin: 5px; text-align: right">
+    <cite><small><i>
+    Developed by Flinders University in collaboration with Amanda Muller
+    </i></small></cite>
+    </div>
+    </div>
+---
+metadata:
+  title: |
+    Paws Rights
+  short title: |
+    Transport Refusal Reports
+  description: |
+    A way to report a transport refusal in SA
+  authors:
+    - name: Sarah Milne, Louis MacConnell, Alex Priest, Callie Symonds, and Emily Prater
+      organization: Flinders University
+  revision_date: 2021-06-04
 ---
 # Define constant values here so we can reconfigure them later
 initial: true
@@ -50,12 +77,31 @@ content: |
    **This application does not provide legal advice and should not be taken as such. This should not be considered a legal document.** 
 
 ---
+metadata:
+  tab title: 
+---
 initial: true
 code: |
   # Place our logo in the top left, by setting the
   # 'logo' metadata to a custom html string
   HAAlogostring = '<div class="media"><img src="{}" class="mr-3" height="50"><div class="media-body"></div></div>'.format(LogoPR.url_for())
-  set_parts(logo=HAAlogostring)
+  set_parts(
+    logo = HAAlogostring
+  )
+  
+  # Make the the title/logo function as a clickable link to restart the
+  # app. We can't do this via metadata (i.e. "title url"), as that doesn't
+  # accept mako templates, so we can't run url_of('restart'). We also can't
+  # do it with set_parts(), as that doesn't have any way of setting the
+  # title url. We therefore use javascript instead, and also set up a tooltip
+  # for when the user hovers over the logo (this won't do much on mobile
+  # devices though).
+  log(
+    "var dapagetitle = $('#dapagetitle');"
+    "dapagetitle.attr('href', '" + url_of('restart') + "');" +
+    "dapagetitle.attr('title', 'Restart & return to home page')",
+    "javascript"
+  )
 ---
 mandatory: True
 question: Paws Rights

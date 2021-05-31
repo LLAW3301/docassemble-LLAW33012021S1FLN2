@@ -14,26 +14,25 @@ event: endpoints['FLNexit_screen']
 question: Report complete
 subquestion: |
   A report you can send to DPTI (the Department for Planning,
-  Transport and Infrastructure) has been generated. We
+  Transport and Infrastructure) has been generated. You can download
+  it here: ${ action_button_html(FLNreport_file.url_for(), label="<span>download</span>", color="secondary", size="sm", icon="file-download", classname="download-button") }
+  
+  We
   % if FLNself_reporting:
   %   if report_email_sent_ok:
-  have emailed it to your address (${ sanitise(user_email) }),
-  however if you don't receive it within a few minutes you can
+  have also emailed it to your address (${ sanitise(user_email) }).
   %   else:
-  attempted to email it to your address (${ sanitise(user_email) }),
-  however an error occurred, so instead you can
+  also attempted to email it to your address (${ sanitise(user_email) }),
+  however an error occurred.
   %   endif
   % else:
   %   if report_email_sent_ok:
-  have emailed it to the provided address (${ sanitise(user_email) }),
-  however if it doesn't arrive within a few minutes or you need
-  to access it yourself, you can
+  have also emailed it to the provided address (${ sanitise(user_email) }).
   %   else:
-  attempted to email it to the provided address (${ sanitise(user_email) }),
-  however an error occurred. Instead, you can also
+  also attempted to email it to the provided address (${ sanitise(user_email) }),
+  however an error occurred.
   %   endif
   % endif
-  download it here: ${ action_button_html(FLNreport_file.url_for(), label="<span>download</span>", color="secondary", size="sm", icon="file-download", classname="download-button") }
   
   Unfortunately, DPTI doesn't provide an email address to send these reports to, so we ask that you print the report and send it by mail to:
   
@@ -48,5 +47,6 @@ subquestion: |
   <div class="end-image"><img src="${ YellowCircleLogo.url_for() }" width="150" height="150"></div>
   
   <div class="center-button-container large-buttons">
-  ${ action_button_html(url_of('restart'), label="Restart & begin a new report", color="danger", size="md") }
+  ${ action_button_html("javascript:confirmAndRestart()", label="Restart & begin a new report", color="danger", size="md") }
   </div>
+  </script>

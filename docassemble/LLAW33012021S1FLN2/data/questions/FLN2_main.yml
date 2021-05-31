@@ -97,7 +97,7 @@ code: |
   log(
     "var dapagetitle = $('#dapagetitle');" +
     "function confirmAndRestart() {" +
-    "  var restart = confirm('Are you sure you want to restart?');" +
+    "  var restart = confirm('This will return to the home page, clearing the current report. Are you sure you want to restart?');" +
     "  if (restart) {" +
     "    window.location.href = '" + url_of('restart') + "';" +
     "  }" +
@@ -117,13 +117,12 @@ subquestion: |
  # This application will collect information for research and reporting purposes. 
  
 buttons:
-  - I agree and wish to continue: continue 
-  - I do not agree and wish to exit: exit
+  - I agree & wish to continue: continue 
+  - I do not agree & wish to exit: exit
     url: https://www.dpti.sa.gov.au/contact_us/compliments_and_complaints
 script: |
   <script>
     $(".da-field-buttons").addClass("continue-exit-buttons");
-    $(".da-field-buttons").addClass("default-size-buttons");
   </script>
 ---
 mandatory: True

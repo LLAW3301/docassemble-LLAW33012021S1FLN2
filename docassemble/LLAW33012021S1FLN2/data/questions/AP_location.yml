@@ -34,8 +34,7 @@ subquestion: |
 comment: |
   Incude the section below in the main question body to show the user
   a map of Adelaide. They can't use it to select a location though,
-  so we've disabled it for now for being too confusing and annoying.
-  Note: HTML comments don't work for this for some reason.
+  so we usually disable it for now, given it can be confusing and annoying.
   
   If you're not sure what suburb, you can try browsing this map:
   <div class="refusal-map-container">

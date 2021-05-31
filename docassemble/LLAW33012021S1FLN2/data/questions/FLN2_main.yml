@@ -77,9 +77,6 @@ content: |
    **This application does not provide legal advice and should not be taken as such. This should not be considered a legal document.** 
 
 ---
-metadata:
-  tab title: 
----
 initial: true
 code: |
   # Place our logo in the top left, by setting the
@@ -93,12 +90,19 @@ code: |
   # app. We can't do this via metadata (i.e. "title url"), as that doesn't
   # accept mako templates, so we can't run url_of('restart'). We also can't
   # do it with set_parts(), as that doesn't have any way of setting the
-  # title url. We therefore use javascript instead, and also set up a tooltip
-  # for when the user hovers over the logo (this won't do much on mobile
-  # devices though).
+  # title url. We therefore use javascript instead. This also allows us to
+  # set up a prompt in case the user hit restart by accident, and add a
+  # tooltip for when the user hovers over the logo (this won't do much
+  # on mobile devices though).
   log(
-    "var dapagetitle = $('#dapagetitle');"
-    "dapagetitle.attr('href', '" + url_of('restart') + "');" +
+    "var dapagetitle = $('#dapagetitle');" +
+    "function confirmAndRestart() {" +
+    "  var restart = confirm('Are you sure you want to restart?');" +
+    "  if (restart) {" +
+    "    window.location.href = '" + url_of('restart') + "';" +
+    "  }" +
+    "}" +
+    "dapagetitle.attr('href', 'javascript:confirmAndRestart()');" +
     "dapagetitle.attr('title', 'Restart & return to home page')",
     "javascript"
   )

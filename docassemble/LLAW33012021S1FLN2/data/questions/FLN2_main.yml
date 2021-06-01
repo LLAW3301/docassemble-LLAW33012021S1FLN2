@@ -16,8 +16,6 @@ modules:
 features: 
   css: FLN_common.css
   javascript: nicebackbutton.js
-  debug: False
-  hide standard menu: True
 ---
 objects:
   - endpoints: DADict
@@ -95,7 +93,7 @@ code: |
   log(
     "var dapagetitle = $('#dapagetitle');" +
     "function confirmAndRestart() {" +
-    "  var restart = confirm('This will return you to the home page, clearing the current report. Are you sure you want to restart?');" +
+    "  var restart = confirm('This will return to the home page, clearing the current report. Are you sure you want to restart?');" +
     "  if (restart) {" +
     "    window.location.href = '" + url_of('restart') + "';" +
     "  }" +

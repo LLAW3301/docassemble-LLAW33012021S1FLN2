@@ -41,9 +41,10 @@ subquestion: |
   GPO BOX 1533<br>
   Adelaide SA 5001
   </p>
+ 
   You can also complain to the Human Rights Commission at:    
-  https://humanrights.gov.au/complaints/make-complaint
-  
+  <a target="_self" href="https://humanrights.gov.au/complaints/make-complaint">Human Rights Commission Complaints</a>
+ 
   Thank you for using the Paws Rights app. We hope that sending these reports will help towards a push for change!
   
   <div class="end-image"><img src="${ YellowCircleLogo.url_for() }" width="150" height="150"></div>

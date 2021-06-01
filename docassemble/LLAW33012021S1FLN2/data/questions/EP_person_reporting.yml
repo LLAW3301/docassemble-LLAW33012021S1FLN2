@@ -1,21 +1,14 @@
 ---
-features:
-  css: EP_person_reporting.css
----
 question: |
   Who is the one reporting?
 field: FLNperson_reporting
 buttons:
-  - You: "Person refused"
+  - Myself: "Person refused"
   - Partner: "Partner of person refused"
   - Friend: "Friend of person refused"
   - Carer: "Carer of person refused" 
   - Relative: "Relative of person refused"
   - Other: "Other relationship to person refused"
-script: |
-  <script>
-    $(".da-field-buttons").addClass("person-reporting-buttons");
-  </script>
 ---
 code: |
   FLNself_reporting = (FLNperson_reporting == "Person refused")

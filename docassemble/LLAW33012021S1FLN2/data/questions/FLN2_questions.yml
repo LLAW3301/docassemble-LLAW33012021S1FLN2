@@ -55,9 +55,9 @@ fields:
 ---
 question: |
   % if FLNself_reporting:
-  Were you asked to show accredited assistance animal ID?
+  Were you asked to show accredited Assistance Dog identification or paperwork?
   % else:
-  Did the driver ask to see accredited assistance animal ID?
+  Did the driver ask to see Assistance Dog identification or paperwork?
   % endif
 field: refuser_asked_animal_id
 buttons:
@@ -108,7 +108,7 @@ script: |
   </script>
 ---
 question: |
-  Please add any files.
+  Please add any files e.g. screenshots, photos, licence plate, your documentation.
 fields:
   - Documents: uploaded_files
     datatype: files

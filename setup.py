@@ -45,7 +45,7 @@ def find_package_data(where='.', package='', exclude=standard_exclude, exclude_d
 setup(name='docassemble.LLAW33012021S1FLN2',
       version='0.0.1',
       description=('A docassemble extension.'),
-      long_description='# docassemble.LLAW33012021S1FLN2\r\n\r\nA docassemble extension.\r\n\r\n## Author\r\n\r\nMark Ferraretto, mark.ferraretto@flinders.edu.au\r\n',
+      long_description='# Paws Rights Web-App\r\n\r\nThis is an app designed for people in SA with assistance animals, who can often be refused access to Ubers, taxis, public transport, and so on. It helps build a report of each transport refusal, ready to be sent to DPTI. It can also be used to gather anonymous statistics of how many refusals are occuring, what areas these occur in, which transport services are involved, and so on.\r\n\r\n## Authors\r\n\r\nSarah Milne, Louis MacConnell, Alex Priest, Callie Symonds, and Emily Prater\r\n\r\nFor Flinders University, Amanda Muller, and Ellen Fraser-Barbour\r\n\r\nBased on templates by Mark Ferraretto, mark.ferraretto@flinders.edu.au\r\n',
       long_description_content_type='text/markdown',
       author='Mark Ferraretto',
       author_email='mark.ferraretto@flinders.edu.au',

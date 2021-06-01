@@ -55,42 +55,45 @@
 .dropdown-item:hover{
     background-color: rgba(255,255,255,0.3);
 }
-.navbar form button{
-    /*background-color: rgba(255,255,255,0.3);*/
-    /*color: #555555 !important;*/
-    /* setting the border to 0 disables the border around the button */
-    border:0;
-    margin-right: 0.5em;
-    color: #fff !important;
-    background-color: #E0782C !important; /* #6c757d #FFAE00 #EF8817 */
-    border-color: #EF8817 !important;
-    border-radius: 0.25rem !important;
-    font-size: 1.1rem;
-    padding: 0.275rem 0.85rem 0.375rem 0.65rem;
-}
 .navbar-brand .media {
   margin-top: -0.1em;
 }
 .navbar-brand {
   line-height: 1em;
 }
-.navbar form button:hover{
-    /*background-color: rgba(255,255,255,0.3);*/
-    /*color: #999999 !important;*/
+
+/* style the back button */
+.navbar form button{
+    border: 0;
+    margin-right: 0.5em;
     color: #fff !important;
-    background-color: #C46827 !important; /* #5a6268 */
-    border-color: #C46827 !important;
+    background-color: #3305A7 !important; /* #343a40 #E0782C #6c757d #FFAE00 #EF8817 */
+    border-color: rgba(0,0,0,0) !important; /* #EF8817 */
     border-radius: 0.25rem !important;
+    font-size: 1.1rem;
+    padding: 0.275rem 0.85rem 0.375rem 0.65rem;
 }
-.navbar form button:focus{
-    outline-width: 0px;
-    outline-color: rgb(255, 255, 255);
-    outline-style: none;
-    outline-width: 0px;
+.navbar form button:hover{
+  color: #fff !important;
+  background-color: #1C0359 !important; /* #000000 #C46827, #5a6268 */
+  border-color: rgba(0,0,0,0) !important; /* #C46827 */
+  border-radius: 0.25rem !important;
 }
-/* use orange for most primary buttons */
+.navbar form button:focus {
+  outline-width: 0px;
+  outline-color: rgb(255, 255, 255);
+  outline-style: none;
+  outline-width: 0px;
+  box-shadow: 0 0 0 0.2rem #268fff80 !important; /* #343a4080 #C4682780 */
+}
+
+/* use dark blue for most primary buttons */
 .btn-primary {
   background-color: #3305A7 !important;
+  border-color: #3305A7 !important;
+}
+.btn-primary:hover {
+  background-color: #1C0359 !important;
   border-color: #1C0359 !important;
 }
 

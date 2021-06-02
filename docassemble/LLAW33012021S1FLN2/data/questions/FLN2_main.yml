@@ -19,7 +19,9 @@ features:
 ---
 objects:
   - endpoints: DADict
-  - LogoPR: DAStaticFile.using(filename='paws_rights_logo_yellow.png')
+  - TransparentLogo: DAStaticFile.using(filename='paws_rights_logo_transparent.png')
+  - YellowLogo: DAStaticFile.using(filename='paws_rights_logo_yellow.png')
+  - YellowCircleLogo: DAStaticFile.using(filename='paws_rights_logo_yellow_circle.png')
 ---
 # Modify the post default screen part to attribute work to Flinders and our client
 default screen parts:
@@ -77,7 +79,7 @@ initial: true
 code: |
   # Place our logo in the top left, by setting the
   # 'logo' metadata to a custom html string
-  HAAlogostring = '<div class="media"><img src="{}" class="mr-3" height="50"><div class="media-body"></div></div>'.format(LogoPR.url_for())
+  HAAlogostring = '<div class="media"><img src="{}" class="mr-3" height="50"><div class="media-body"></div></div>'.format(TransparentLogo.url_for())
   set_parts(
     logo = HAAlogostring
   )

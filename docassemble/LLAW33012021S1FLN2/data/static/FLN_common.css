@@ -7,53 +7,54 @@
 */
 
 /* This is a style or a 'class'.  This class is part of a 'Bootstrap' theme.
-    Docassemble makes use of Bootstrap themes.  Bootstrap is what provides the
-    navbar at the top, the style of the buttons.  It is also what allows the
-    website to run on computers and iPads and smartphones.  We can customise
-    elements of the theme to suit our needs.  That is what the next few classes
-    do.  For more information on Bootstrap check out https://getbootstrap.com
+   Docassemble makes use of Bootstrap themes.  Bootstrap is what provides the
+   navbar at the top, the style of the buttons.  It is also what allows the
+   website to run on computers and iPads and smartphones.  We can customise
+   elements of the theme to suit our needs.  That is what the next few classes
+   do.  For more information on Bootstrap check out https://getbootstrap.com
 */
 .navbar{
-    /* All colours in IT are set using RGB (ie: Red, Green, Blue) values.
-       Each value of red, green and blue is a number between 0 and 255.
-       Comon colour values are:
-       - red:    rgb(255, 0, 0)
-       - blue:   rgb(0, 255, 0)
-       - green:  rgb(0, 0, 255)
-       - yellow: rgb(0, 255, 255)
-       - black:  rgb(0, 0, 0)
-       - white:  rgb(255, 255, 255)
-       The whole spectrum of colours can be represented by any combination
-       of RGB values.  To choose a colour you need to know its RGB value.
-       To work that out, use MS Paint or Excel to set a colour.  Most software
-       comes with colour picking software that will show you the RGB values
-       for any colour you pick
-    */
-    background-color: rgb(255,217,102) !important;
+  /* All colours in IT are set using RGB (ie: Red, Green, Blue) values.
+     Each value of red, green and blue is a number between 0 and 255.
+     Comon colour values are:
+     - red:    rgb(255, 0, 0)
+     - blue:   rgb(0, 255, 0)
+     - green:  rgb(0, 0, 255)
+     - yellow: rgb(0, 255, 255)
+     - black:  rgb(0, 0, 0)
+     - white:  rgb(255, 255, 255)
+     The whole spectrum of colours can be represented by any combination
+     of RGB values.  To choose a colour you need to know its RGB value.
+     To work that out, use MS Paint or Excel to set a colour.  Most software
+     comes with colour picking software that will show you the RGB values
+     for any colour you pick
+  */
+  /* Flinders gold */
+  background-color: rgb(255,211,0) !important; /* rgb(255,217,102) */
 }
 .navbar .navbar-brand{
-    color : #000;
-    font-weight: bolder;
-    font-size: 2.0em;
+  color : #000;
+  font-weight: bolder;
+  font-size: 2.0em;
 }
 .navbar .navbar-brand:hover{
-    color: #000;
+  color: #000;
 }
 
 .navbar .nav-item a{
-    color: #000 !important;
+  color: #000 !important;
 }
 
 .navbar .dropdown-menu{
-    /*  the rgba() function works just like rgb in that
-        it sets a colour.  But the fourth element sets an
-        'alpha' or transaparency value.  Here we are saying
-        to set the transparency to 30%
-    */
-    background-color: rgba(255,255,255,0.3);
+  /* the rgba() function works just like rgb in that
+     it sets a colour.  But the fourth element sets an
+     'alpha' or transaparency value.  Here we are saying
+     to set the transparency to 30%
+  */
+  background-color: rgba(255,255,255,0.3);
 }
 .dropdown-item:hover{
-    background-color: rgba(255,255,255,0.3);
+  background-color: rgba(255,255,255,0.3);
 }
 .navbar-brand .media {
   margin-top: -0.1em;
@@ -64,18 +65,20 @@
 
 /* style the back button */
 .navbar form button{
-    border: 0;
-    margin-right: 0.5em;
-    color: #fff !important;
-    background-color: #3305A7 !important; /* #343a40 #E0782C #6c757d #FFAE00 #EF8817 */
-    border-color: rgba(0,0,0,0) !important; /* #EF8817 */
-    border-radius: 0.25rem !important;
-    font-size: 1.1rem;
-    padding: 0.275rem 0.85rem 0.375rem 0.65rem;
+  border: 0;
+  margin-right: 0.5em;
+  color: #fff !important;
+  /* Flinders navy */
+  background-color: rgba(0, 47, 96) !important; /* #3305A7 #343a40 #E0782C #6c757d #FFAE00 #EF8817 */
+  border-color: rgba(0,0,0,0) !important; /* #EF8817 */
+  border-radius: 0.25rem !important;
+  font-size: 1.1rem;
+  padding: 0.275rem 0.85rem 0.375rem 0.65rem;
 }
 .navbar form button:hover{
   color: #fff !important;
-  background-color: #1C0359 !important; /* #000000 #C46827, #5a6268 */
+  /* Flinders navy, darkened */
+  background-color: rgba(0, 24, 48) !important; /* #1C0359 #000000 #C46827, #5a6268 */
   border-color: rgba(0,0,0,0) !important; /* #C46827 */
   border-radius: 0.25rem !important;
 }
@@ -89,13 +92,20 @@
 
 /* use dark blue for most primary buttons */
 .btn-primary {
-  background-color: #3305A7 !important;
-  border-color: #3305A7 !important;
+  /* Flinders navy */
+  background-color: rgba(0, 47, 96) !important; /* #3305A7 */
+  border-color: rgba(0, 47, 96) !important; /* #3305A7 */
+  font-weight: bold !important;
 }
 .btn-primary:hover {
-  background-color: #1C0359 !important;
-  border-color: #1C0359 !important;
+  /* Flinders navy, darkened */
+  background-color: rgba(0, 24, 48) !important; /* #1C0359 */
+  border-color: rgba(0, 24, 48) !important; /* #1C0359 */
 }
+
+/*.btn-secondary {
+  font-weight: bold !important;
+}*/
 
 /* keep default blue/red colours on first screen */
 fieldset.continue-exit-buttons div .btn-primary {

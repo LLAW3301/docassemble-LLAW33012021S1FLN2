@@ -234,7 +234,7 @@ fields:
     required: False
     datatype: raw
   - Refusal postcode: FLNrefusal_postcode
-    datatype: text
+    datatype: raw
   - Refusal reason: driver_statement
     datatype: raw
 script: |

@@ -95,7 +95,7 @@
   /* Flinders navy */
   background-color: rgba(0, 47, 96) !important; /* #3305A7 */
   border-color: rgba(0, 47, 96) !important; /* #3305A7 */
-  font-weight: bold !important;
+  /* font-weight: bold !important; */
 }
 .btn-primary:hover {
   /* Flinders navy, darkened */

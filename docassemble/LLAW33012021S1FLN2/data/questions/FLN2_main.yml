@@ -16,6 +16,8 @@ modules:
 features: 
   css: FLN_common.css
   javascript: nicebackbutton.js
+  debug: False
+  hide standard menu: True
 ---
 objects:
   - endpoints: DADict

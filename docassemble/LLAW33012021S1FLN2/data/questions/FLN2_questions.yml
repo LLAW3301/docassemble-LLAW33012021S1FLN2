@@ -104,7 +104,7 @@ script: |
   </script>
 ---
 question: |
-  Unfortunately, this is not unlawful as you did not provide ID.
+  Unfortunately, this is not unlawful as you did not provide ID
 subquestion: |
   Would you like to continue anyway?
 field: continue_unlawful_report

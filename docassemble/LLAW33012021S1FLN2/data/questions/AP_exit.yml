@@ -13,8 +13,8 @@ objects:
 event: endpoints['FLNexit_screen']
 question: Report complete
 subquestion: |
-  A report you can send to DPTI (the Department for Planning,
-  Transport and Infrastructure) has been generated. You can download
+  A report you can send to DPTI (the Department for Infrastructure and
+  Transport) has been generated. You can download
   it here: ${ action_button_html(FLNreport_file.url_for(), label="<span>download</span>", color="secondary", size="sm", icon="file-download", classname="download-button") }
   
   We
@@ -34,7 +34,7 @@ subquestion: |
   %   endif
   % endif
   
-  Unfortunately, DPTI doesn't provide an email address to send these reports to, so we ask that you print the report and send it by mail to:
+  Unfortunately, DPTI doesn't provide an email address to send these reports to, so we ask that you print the report and send it by mail:
   
   <p class="dpti-address">
   Department for Infrastructure and Transport<br>

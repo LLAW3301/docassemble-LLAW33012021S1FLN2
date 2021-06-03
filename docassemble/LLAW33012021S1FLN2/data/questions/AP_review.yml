@@ -61,7 +61,7 @@ code: |
 # doesn't run this question when trying to find a value for e.g. user_email
 only sets: FLNgenerate_report_button_clicked
 question: |
-  Review your details.
+  Review your details
 subquestion: |
   Please check that these personal details are correct:
   

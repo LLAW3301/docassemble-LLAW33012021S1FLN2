@@ -33,7 +33,7 @@ default screen parts:
     </div>
     <div style="margin: 5px; text-align: right">
     <cite><small><i>
-    Developed by Flinders University in collaboration with Amanda Muller
+    Developed by Flinders University in collaboration with Amanda Muller and Ellen Fraser-Barbour
     </i></small></cite>
     </div>
     </div>
@@ -47,6 +47,7 @@ metadata:
     - name: Sarah Milne, Louis MacConnell, Alex Priest, Callie Symonds, and Emily Prater
       organization: Flinders University
   revision_date: 2021-06-04
+  exit url: https://www.dpti.sa.gov.au/contact_us/compliments_and_complaints
 ---
 # Define constant values here so we can reconfigure them later
 initial: true
@@ -155,7 +156,7 @@ code: |
   if user_show_id == 'No':
     continue_unlawful_report
     if continue_unlawful_report == 'No':
-      message("Exit screen","Thanks for using!")
+      message("Exit screen","Thanks for using!",url="https://www.dpti.sa.gov.au/contact_us/compliments_and_complaints")
   else:
     continue_unlawful_report = "N/A"
   

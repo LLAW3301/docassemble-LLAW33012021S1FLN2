@@ -59,6 +59,8 @@ fields:
   - Details: driver_statement
     input type: area
     datatype: raw
+    default: |
+      They said they don't like cleaning up dog hair
 ---
 question: |
   % if FLNself_reporting:

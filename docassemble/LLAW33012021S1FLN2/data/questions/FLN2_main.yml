@@ -128,6 +128,11 @@ script: |
 ---
 mandatory: True
 code: |
+  uploaded_files
+  log(uploaded_files, 'console')
+  #uploaded_files = DAFileList(SampleEvidence)
+  #log(uploaded_files, 'console')
+
   FLNperson_reporting
   FLNreporter_firstname
   FLNreporter_lastname
@@ -162,7 +167,8 @@ code: |
   
   attach_evidence
   if attach_evidence == "Yes":
-    uploaded_files
+    uploaded_files = DAFileList(SampleEvidence)
+    force_ask('uploaded_files')
   else:
     uploaded_files = ["No additional evidence attached"]
   

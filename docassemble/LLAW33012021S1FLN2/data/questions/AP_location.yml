@@ -31,6 +31,11 @@ subquestion: |
   <span id="postcode-input-container">[FIELD FLNrefusal_postcode]</span>
   
   <div id="postcodes-list"></div>
+  
+  If you're not sure what suburb, you can try browsing this map:
+  <div class="refusal-map-container">
+  <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d248956.58478148535!2d138.68909503461902!3d-34.93047901614914!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sau!4v1620128217527!5m2!1sen!2sau" style="border:0;" allowfullscreen="" loading="lazy" class="refusal-map"></iframe>
+  </div>
 comment: |
   Incude the section below in the main question body to show the user
   a map of Adelaide. They can't use it to select a location though,

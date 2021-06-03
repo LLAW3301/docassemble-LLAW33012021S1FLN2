@@ -207,12 +207,12 @@ fieldset.multicolor-buttons div button:nth-of-type(6n+5):hover {
   font-weight: 400;
 }
 
-#incident-info {
+#incident-info, .refusal-map-container {
   margin-bottom: 1em;
 }
 
 /* enlarge buttons on most screens */
-.form-actions, .large-buttons {
+.form-actions, .refusal-map-container {
   font-size: 1.2em;
 }
 .form-actions .btn, .large-buttons .btn {

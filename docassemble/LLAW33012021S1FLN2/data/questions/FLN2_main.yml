@@ -54,8 +54,8 @@ initial: true
 code: |
   # Write an email here to send statistics to that address.
   # For example:
-  # FLNstats_email_recipient = "alex@westminstersoftware.com"
-  FLNstats_email_recipient = None
+  FLNstats_email_recipient = "prie0075@flinders.edu.au"
+  # FLNstats_email_recipient = None
   
   # For emails we send, this configures how the 'sent from' section will appear
   # Note: If we change the 'email' value so that the displayed-sender-address

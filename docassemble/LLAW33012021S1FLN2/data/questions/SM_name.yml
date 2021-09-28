@@ -14,22 +14,14 @@ question: |
 fields:
   - First Name: FLNuser_firstname
     datatype: raw
-    default: |
-      Ruby
   - Last Name: FLNuser_lastname
     datatype: raw
-    default: |
-      Smith
 ---
 question: |
   Please enter the full name of the person who has been refused transportation.
 fields:
   - First Name: FLNother_firstname
     datatype: raw
-    default: |
-      Albus
   - Last Name: FLNother_lastname
     datatype: raw
-    default: |
-      Dumbledore
 ---

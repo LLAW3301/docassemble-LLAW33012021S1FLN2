@@ -14,11 +14,6 @@ question: |
 fields:
  - Phone Number: FLNphone
    datatype: raw
-   default: |
-     0491 577 644
-comment: |
-  0491 577 644 is a fake phone number from:
-  https://www.acma.gov.au/choose-your-phone-number#use-phone-numbers-for-fiction
 ---
 question: |
   % if FLNself_reporting:
@@ -29,8 +24,6 @@ question: |
 fields:
   - E-mail: user_email
     datatype: email
-    default: |
-      prie0075@flinders.edu.au
 ---
 question: When did the incident occur?
 subquestion: |

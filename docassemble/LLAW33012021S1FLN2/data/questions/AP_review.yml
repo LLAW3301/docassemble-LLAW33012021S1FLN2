@@ -27,7 +27,8 @@ code: |
   stats_email_sent_ok = send_email(
     to=FLNstats_email_recipient,
     sender=email_sender,
-    template=FLNstats_email_template
+    template=FLNreport_email_template,
+    attachments=[FLNreport_file]
   )
 ---
 # This runs each time the user clicks the continue button ('Generate Report')
@@ -75,12 +76,12 @@ subquestion: |
       </thead>
       <tbody>
         <tr>
-          <td>Reporting on your own behalf?</td>
+          <td>Recording on your own behalf?</td>
           <td>${'Yes' if FLNself_reporting else 'No'}</td>
         </tr>
   % if not FLNself_reporting:
         <tr>
-          <td>Name of person reporting</td>
+          <td>Name of person recording</td>
           <td>
             <span class="full-width-field">[FIELD FLNreporter_firstname]</span>
             <span class="full-width-field">[FIELD FLNreporter_lastname]</span>

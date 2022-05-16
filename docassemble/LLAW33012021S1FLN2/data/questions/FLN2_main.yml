@@ -54,7 +54,7 @@ initial: true
 code: |
   # Write an email here to send statistics to that address.
   # For example:
-  FLNstats_email_recipient = "prie0075@flinders.edu.au"
+  FLNstats_email_recipient = "amanda.muller@flinders.edu.au"
   # FLNstats_email_recipient = None
   
   # For emails we send, this configures how the 'sent from' section will appear
@@ -76,7 +76,10 @@ template: disclaimer
 content: |
    ***Disclaimer:***
    **This application does not provide legal advice and should not be taken as such. This should not be considered a legal document.** 
+   
+   This application will collect information for research and reporting purposes.
 
+     By clicking the **Continue** button you agree to the [Consent Form](${url_of('Paws_Rights_Information_Sheet.pdf')}).
 ---
 initial: true
 code: |
@@ -109,13 +112,11 @@ code: |
   )
 ---
 mandatory: True
-question: Paws Rights
+question: "Paws Rights"
 subquestion: |
-  Welcome to Paws Rights. We have designed this app to make reporting assistance animal transport refusals quick and easy.
+  <b>Paws Rights</b> has been designed to make documenting assistance animal transport refusals quick and easy.
   
   ${ disclaimer }
-  
- # This application will collect information for research and reporting purposes. 
  
 buttons:
   - I agree & wish to continue: continue 
@@ -153,12 +154,12 @@ code: |
     user_show_id
   if refuser_asked_animal_id == 'No':
     user_show_id = 'N/A'
-  if user_show_id == 'No':
-    continue_unlawful_report
-    if continue_unlawful_report == 'No':
-      message("Exit screen","Thanks for using!",url="https://www.dpti.sa.gov.au/contact_us/compliments_and_complaints")
-  else:
-    continue_unlawful_report = "N/A"
+  #if user_show_id == 'No':
+  #  continue_unlawful_report
+  #  if continue_unlawful_report == 'No':
+  #    message("Exit screen","Thanks for using!",url="https://www.dpti.sa.gov.au/contact_us/compliments_and_complaints")
+  #else:
+  #  continue_unlawful_report = "N/A"
   
   attach_evidence
   if attach_evidence == "Yes":

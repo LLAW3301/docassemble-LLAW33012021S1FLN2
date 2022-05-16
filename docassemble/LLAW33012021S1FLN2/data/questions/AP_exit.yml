@@ -11,11 +11,12 @@ objects:
   - YellowCircleLogo: DAStaticFile.using(filename='paws_rights_logo_yellow_circle.png')
 ---
 event: endpoints['FLNexit_screen']
-question: Report complete
+question: Summary complete
 subquestion: |
-  A report you can send to DPTI (the Department for Infrastructure and
-  Transport) has been generated. You can download
-  it here: ${ action_button_html(FLNreport_file.url_for(), label="<span>download</span>", color="secondary", size="sm", icon="file-download", classname="download-button") }
+
+  Here is your summary of the event.
+  
+  ${ action_button_html(FLNreport_file.url_for(), label="<span>download</span>", color="secondary", size="sm", icon="file-download", classname="download-button") }
   
   We
   % if FLNself_reporting:
@@ -34,22 +35,45 @@ subquestion: |
   %   endif
   % endif
   
-  Unfortunately, DPTI doesn't provide an email address to send these reports to, so we ask that you print the report and send it by mail:
+  **You can use this summary to help you report to your state or territory's anti-discrimination commissioner or to the Australian Human Rights Commission.** Follow the links below to locate your state or territory's anti-discrimination commissioner:
   
-  <p class="dpti-address">
-  Department for Infrastructure and Transport<br>
-  GPO BOX 1533<br>
-  Adelaide SA 5001
+  <a href="https://www.ag.gov.au/rights-and-protections/human-rights-and-anti-discrimination/australias-anti-discrimination-law">State and Territory Human Rights Commissioners</a>
+  
+  <a href="https://humanrights.gov.au/complaints/make-complaint">Human Rights Australia Complaints</a>
+  
+  <br/>
+  <hr>
+  
+  If you would like to participate in further research, please contact amanda.muller@flinders.edu.au
+  
+  <br/>
+  <hr>
+  ***If your experience has been traumatic or mentally distressing to you, please contact mental health services for support:***
+  
+  <p>
+  <a href="https://headspace.org.au/eheadspace/">eheadspace</a> for individuals
+  ages 12-25. <br />
+  Call 1800 650 890, 9am-1am AEST OR Connect 7 days a week through online
+  chat/email.<br />
+  <a href="https://headspace.org.au/eheadspace/connect-with-a-clinician/"
+    >https://headspace.org.au/eheadspace/connect-with-a-clinician/</a
+  >
   </p>
- 
-  You can also complain to the Human Rights Commission at:    
-  <a target="_self" href="https://humanrights.gov.au/complaints/make-complaint">Human Rights Commission Complaints</a>
- 
-  Thank you for using the Paws Rights app. We hope that sending these reports will help towards a push for change!
-  
-  <div class="end-image"><img src="${ YellowCircleLogo.url_for() }" width="150" height="150"></div>
-  
-  <div class="center-button-container large-buttons">
-  ${ action_button_html("javascript:confirmAndRestart()", label="Restart & begin a new report", color="danger", size="md") }
-  </div>
-  </script>
+
+  <p>
+  <a href="https://friendline.org.au/">FriendLine</a> for individuals who are
+  feeling lonely or want a chat.<br />
+  Call 1800 424 287 OR chat online
+  <a href="https://friendline.org.au/">https://friendline.org.au/</a>
+  </p>
+
+  <p>
+  <a href="https://www.beyondblue.org.au/">Beyond Blue</a> for individuals who
+  are suffering from
+  <a href="https://www.healthdirect.gov.au/depression">depression</a> and
+  <a href="https://www.healthdirect.gov.au/anxiety">anxiety</a> <br />Call 1300
+  22 4636, 24 hours/7 days a week OR chat online or through email<br />
+  <a href="https://www.beyondblue.org.au/get-support/get-immediate-support"
+    >https://www.beyondblue.org.au/get-support/get-immediate-support</a
+  >
+  </p>

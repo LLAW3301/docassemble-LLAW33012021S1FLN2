@@ -52,8 +52,6 @@ fields:
   - Details: driver_statement
     input type: area
     datatype: raw
-    default: |
-      They said they don't like cleaning up dog hair
 ---
 question: |
   % if FLNself_reporting:
@@ -86,7 +84,7 @@ script: |
   </script>
 ---
 question: |
-  Do you have any supporting evidence you want to attach?
+  Do you have any supporting screenshots or photos you want to attach?
 field: attach_evidence
 buttons:
   - "Yes": Yes
@@ -110,7 +108,7 @@ script: |
   </script>
 ---
 question: |
-  Please add any files e.g. screenshots, photos, licence plate, your documentation.
+  Please add any screenshots or photos (for example, licence plates).
 fields:
   - Documents: uploaded_files
     datatype: files

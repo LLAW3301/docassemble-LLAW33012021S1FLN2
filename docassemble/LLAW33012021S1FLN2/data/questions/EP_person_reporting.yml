@@ -1,6 +1,6 @@
 ---
 question: |
-  Who is submitting the report?
+  Who is submitting the record?
 field: FLNperson_reporting
 buttons:
   - Myself: "Person refused"

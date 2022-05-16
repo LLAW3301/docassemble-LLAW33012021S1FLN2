@@ -6,8 +6,8 @@ include:
   - AP_location.yml
 ---
 attachment:
-  name: Transport Refusal Report
-  filename: Transport-Refusal-Report--${ today().strftime('%Y-%m-%d') }--${ current_datetime().strftime('%H-%M-%S') }
+  name: Transport Refusal Record
+  filename: Transport-Refusal-Record--${ today().strftime('%Y-%m-%d') }--${ current_datetime().strftime('%H-%M-%S') }
   variable name: FLNreport_file
   docx template file: Jinja.docx
   valid formats:
@@ -15,22 +15,41 @@ attachment:
 ---
 template: FLNreport_email_template
 subject: |
-  Transport Refusal Report | Paws Rights
+  Transport Refusal Record | Paws Rights
 content: |
-  Greetings, ${ sanitise(FLNrefused_firstname) }
+  Dear ${ sanitise(FLNrefused_firstname) }
 
-  Your transport refusal report is attached. Please print & send it by mail to:
+  Your transport refusal record is attached.
   
-  Department for Infrastructure and Transport<br>
-  GPO BOX 1533<br>
-  Adelaide SA 5001
+  **You can use this summary to help you report to your state or territory's anti-discrimination commissioner or to the Australian Human Rights Commission.** Follow the links below to locate your state or territory's anti-discrimination commissioner:
   
-  Thankyou,<br>
+  [State and Territory Human Rights Commissioners](https://www.ag.gov.au/rights-and-protections/human-rights-and-anti-discrimination/australias-anti-discrimination-law)
+  
+  [Human Rights Australia Complaints](https://humanrights.gov.au/complaints/make-complaint)
+  
+  If you would like to give feedback or participate in further research, please contact amanda.muller@flinders.edu.au.
+  
+  Thank you,
+  
   The Paws Rights Team
+
+  [SKIPLINE]
+  [SKIPLINE]
+  [SKIPLINE]
+
+  ***If your experience has been traumatic or mentally distressing to you, please contact mental health services for support:***
+  
+  [Headspace](https://headspace.org.au/eheadspace/) for individuals ages 12-25. Call 1800 650 890, 9am-1am AEST OR Connect 7 days a week through [online
+  chat or email](https://headspace.org.au/eheadspace/connect-with-a-clinician/)
+
+  [FriendLine](https://friendline.org.au/) for individuals who are feeling lonely or want a chat. Call 1800 424 287 OR chat online
+
+  [BeyondBlue](https://www.beyondblue.org.au/) for individuals who
+  are suffering from [depression](https://www.healthdirect.gov.au/depression) and   [anxiety](https://www.healthdirect.gov.au/anxiety). Call 1300 22 4636, 24 hours/7 days a week OR [chat online or through email](https://www.beyondblue.org.au/get-support/get-immediate-support)
 ---
 template: FLNstats_email_template
 subject: |
   Stats for Transport Refusal | Paws Rights
 content: |
   RefusalDate, RefusalTime, RefusalPostcode, TransportType, PersonReporting, DidRefuserStateReason, DidRefuserAskForAnimalID, DidUserShowID, DidUserContinueUnlawfulReport, DidUserAttachEvidence<br>
-  ${ FLNdate.strftime('%Y-%m-%d') }, ${ FLNrefusal_time.strftime('%H:%M:%S') }, ${ sanitise(FLNrefusal_postcode) }, ${ sanitise(selected_transport_type) }, ${ FLNperson_reporting }, ${ FLNrefusal_reason }, ${ refuser_asked_animal_id }, ${ user_show_id }, ${ continue_unlawful_report }, ${ attach_evidence }
+  ${ FLNdate.strftime('%Y-%m-%d') }, ${ FLNrefusal_time.strftime('%H:%M:%S') }, ${ sanitise(FLNrefusal_postcode) }, ${ sanitise(selected_transport_type) }, ${ FLNperson_reporting }, ${ FLNrefusal_reason }, ${ refuser_asked_animal_id }, ${ user_show_id }, ${ attach_evidence }
